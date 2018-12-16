@@ -19,5 +19,8 @@
   "bugs": {
     "url": "https://github.com/mysteryven/ui-wheels/issues"
   },
-  "homepage": "https://github.com/mysteryven/ui-wheels#readme"
+  "homepage": "https://github.com/mysteryven/ui-wheels#readme",
+  "dependencies": {
+    "vue": "^2.5.21"
+  }
 }
