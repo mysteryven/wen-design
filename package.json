@@ -1,0 +1,23 @@
+{
+  "name": "vue-wheels",
+  "version": "1.0.0",
+  "description": "this is a ui framework created by VUE  ",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/mysteryven/ui-wheels.git"
+  },
+  "keywords": [
+    "vue",
+    "ui"
+  ],
+  "author": "wenzhe",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/mysteryven/ui-wheels/issues"
+  },
+  "homepage": "https://github.com/mysteryven/ui-wheels#readme"
+}
