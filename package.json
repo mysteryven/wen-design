@@ -22,5 +22,8 @@
   "homepage": "https://github.com/mysteryven/ui-wheels#readme",
   "dependencies": {
     "vue": "^2.5.21"
+  },
+  "devDependencies": {
+    "parcel": "^1.10.3"
   }
 }
