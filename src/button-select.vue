@@ -29,9 +29,11 @@
 <style lang="scss">
     ul, li {margin: 0; list-style: none; padding: 0;}
     .z-button-select {
+        display: inline-flex;
         position: relative;
         ul {
             position: absolute;
+            word-break: keep-all;
             padding-top: 6px;
             top: 130%;
             left: 0px;
