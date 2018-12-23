@@ -1,9 +1,6 @@
 <template>
     <button class="z-button" :class="{[`icon-${iconPosition}`]: true}" >
-        <svg class="icon" v-if="icon" aria-hidden="true">
-            <use :xlink:href="`#icon-${icon}`"></use>
-            <use :xlink:href="`#icon-${icon}`"></use>
-        </svg>
+        <z-icon v-if="icon" :name="icon"></z-icon>
         <div class="content">
             <slot></slot>
         </div>
@@ -25,10 +22,6 @@
 </script>
 
 <style lang="scss">
-    .icon {
-        width: 1em;
-        height: 1em;
-    }
     .z-button {
         display: inline-flex;
         justify-content: center;
@@ -49,7 +42,7 @@
         &:active{
             background: var(--button-active-bg);
         }
-        >.icon {
+        >.z-icon {
             order: 1;
             margin-right: 0.3em;
             margin-left: 0
@@ -58,7 +51,7 @@
             order: 2
         }
         &.icon-right {
-            >.icon {
+            >.z-icon {
                 order: 2;
                 margin-left: 0.3em;
                 margin-right: 0
