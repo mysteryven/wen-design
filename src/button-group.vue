@@ -5,7 +5,14 @@
 </template>
 <script>
     export default {
-
+        mounted() {
+            for (let node of this.$el.children) {
+                if (node.nodeName !== 'BUTTON') {
+                    console.warn('为了避免不必要的样式问题，z-button-group 下的直接子节点应该全是 button，' +
+                        '但是你写的是' + node.nodeName.toLowerCase())
+                }
+            }
+        }
     }
 </script>
 <style lang="scss">
