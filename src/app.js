@@ -20,10 +20,13 @@ let app = new Vue({
 
 import chai from 'chai'
 const expect = chai.expect
+import spies from 'chai-spies'
+chai.use(spies)
 
 // 单元测试
 {
     let Contructor = Vue.extend(Button)
+
     let button = new Contructor({
         propsData: {
             icon: 'setting',
@@ -87,10 +90,14 @@ const expect = chai.expect
         }
     })
     button.$mount(div)
-    button.onclick = function() {
-        console.log(1)
-    }
+
+    let spy = chai.spy(function() {
+        console.log('hi')
+    })
+
+    button.$on('click', spy)
     button.$el.click()
+    expect(spy).to.have.been.called()
 
 }
 
