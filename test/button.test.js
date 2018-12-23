@@ -13,7 +13,7 @@ describe('Button', () => {
         const Constructor = Vue.extend(Button)
         const vm = new Constructor({
             propsData: {
-                icon: 'settings'
+                icon: 'setting'
             }
         }).$mount()
         const useElement = vm.$el.querySelector('use')
@@ -30,7 +30,6 @@ describe('Button', () => {
             }
         }).$mount()
         const useElements = vm.$el.querySelectorAll('use')
-        console.log(useElements)
         expect(useElements.length).to.equal(1)
         expect(useElements[0].getAttribute('xlink:href')).to.equal('#icon-loading')
         vm.$destroy()
