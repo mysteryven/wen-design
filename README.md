@@ -1,12 +1,17 @@
 # ui-wheels
 
+
+## 提示
+
+目前还处于开发的初级阶段，你可以通过看我的 commit 记录来看我的思路
+
 ## 介绍
 
 这是个基于 Vue 的 UI 库，融合了主流 UI 框架的设计元素，但是请你注意，使用前要声明：
 
 ```css
  * {
- box-sizing: border-box
+    box-sizing: border-box；
  }
 ```
 
