@@ -4,7 +4,8 @@
   "description": "this is a ui framework created by VUE  ",
   "main": "index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "dev-test": "parcel watch test/* --no-cache & karma start",
+    "test": "parcel build test/* --no-cache --no-minify && karma start --single-run"
   },
   "alias": {
     "vue": "./node_modules/vue/dist/vue.common.js"
@@ -31,8 +32,17 @@
   "devDependencies": {
     "@vue/component-compiler-utils": "^2.3.1",
     "chai": "^4.2.0",
+    "karma": "^3.1.4",
+    "karma-chai": "^0.1.0",
+    "karma-chai-spies": "^0.1.4",
+    "karma-chrome-launcher": "^2.2.0",
+    "karma-mocha": "^1.3.0",
+    "karma-sinon-chai": "^2.0.2",
+    "mocha": "^5.2.0",
     "parcel": "^1.11.0",
     "sass": "^1.15.2",
+    "sinon": "^7.2.2",
+    "sinon-chai": "^3.3.0",
     "vue-template-compiler": "^2.5.21"
   }
 }
