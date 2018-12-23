@@ -1,12 +1,12 @@
 <template>
-    <button class="z-button" :class="{[`icon-${iconPosition}`]: true}"
+    <button class="z-button" :class="{[`icon-${iconPosition}`]: true, disabled: disabled, circle: isCircle}"
         @click="$emit('click')">
         <z-icon class="icon" v-if="icon && !loading" :name="icon"></z-icon>
         <z-icon class="icon loading" v-if="loading" name="loading"></z-icon>
-        <div class="content" :class="{loadingText: loading}">
+        <div class="content" :class="{loadingText: loading}" v-if="!isCircle">
             <slot></slot>
         </div>
-        </button>
+    </button>
 </template>
 <script>
     export default {
@@ -20,6 +20,14 @@
                 }
             },
             loading: {
+                type: Boolean,
+                default: false
+            },
+            disabled: {
+                type: Boolean,
+                default: false
+            },
+            isCircle: {
                 type: Boolean,
                 default: false
             }
@@ -78,10 +86,31 @@
             animation: spin 1.4s linear infinite;
         }
         .loadingText {
-            color: #333333;
             cursor:not-allowed;
         }
+    }
+    .disabled {
+        cursor: not-allowed;
+        background-color: var(--button-disable-bg);
+        color: var(--button-disable-color);
+    }
+    .disabled:hover {
+        box-shadow: none;
+        border-color: inherit;
+    }
 
+    .circle {
+        border-radius: 50%;
+        width: var(--button-height);
+        padding: 0;
+        display: inline-flex;
+        justify-content: center;
+        align-items: center;
+        > .icon {
+            margin: 0;
+            height: 1em;
+            width: 1em
+        }
     }
 
 </style>

@@ -21,6 +21,8 @@
             --button-border-radius: 4px;
             --color: #333;
             --border-color-hover: #666;
+            --button-disable-bg: #d8d8d8;
+            --button-disable-color: #aaaaaa;
         }
         #app {
             margin: 100px;
@@ -29,15 +31,21 @@
 </head>
 <body>
 <div id="app">
-    <z-button :loading="isLoaded" @click="isLoaded = !isLoaded">按钮</z-button>
-    <z-button icon="setting" icon-position="left">按钮</z-button>
-    <z-button loading icon="loading" icon-position="right">按钮</z-button>
+    <z-button>普通按钮</z-button>
+    <z-button icon="like" icon-position="left">点赞</z-button>
+    <z-button icon="setting" icon-position="right">设置</z-button>
+    <z-button loading icon="setting" icon-position="right">加载中</z-button>
+    <z-button loading>加载中</z-button>
+    <z-button disabled>不可用</z-button>
+    <z-button disabled>不可用</z-button>
+    <z-button :is-circle="true" icon="setting">不显示</z-button>
     <z-button-group>
-        <div></div>
         <z-button icon="left" icon-position="left">上一页</z-button>
-        <z-button icon-position="left">按钮</z-button>
+        <z-button icon-position="left">按钮组</z-button>
+        <z-button icon-position="left">按钮组</z-button>
         <z-button icon="right" icon-position="right">下一页</z-button>
     </z-button-group>
+    <z-button-select :list="selectList"></z-button-select>
 </div>
 
 <script src="./src/app.js"></script>

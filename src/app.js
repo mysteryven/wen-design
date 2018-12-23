@@ -10,6 +10,8 @@ Vue.component('z-button-group', ButtonGroup)
 let app = new Vue({
     el: '#app',
     data: {
-        isLoaded: false
+        loading: false,
+        disabled: true,
+        selectList: ['apple', 'banana', 'orange']
     }
 })
