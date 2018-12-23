@@ -6,5 +6,8 @@ Vue.component('z-button', Button)
 Vue.component('z-icon', Icon)
 
 let app = new Vue({
-    el: '#app'
+    el: '#app',
+    data: {
+        isLoaded: false
+    }
 })

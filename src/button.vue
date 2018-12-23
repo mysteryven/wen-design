@@ -1,7 +1,9 @@
 <template>
-    <button class="z-button" :class="{[`icon-${iconPosition}`]: true}" >
-        <z-icon v-if="icon" :name="icon"></z-icon>
-        <div class="content">
+    <button class="z-button" :class="{[`icon-${iconPosition}`]: true}"
+        @click="$emit('click')">
+        <z-icon class="icon" v-if="icon && !loading" :name="icon"></z-icon>
+        <z-icon class="icon loading" v-if="loading" name="loading"></z-icon>
+        <div class="content" :class="{loadingText: loading}">
             <slot></slot>
         </div>
         </button>
@@ -16,12 +18,24 @@
                 validator(newValue) {
                     return !(newValue !== 'left' && newValue !== 'right');
                 }
+            },
+            loading: {
+                type: Boolean,
+                default: false
             }
         }
     }
 </script>
 
 <style lang="scss">
+    @keyframes spin {
+       0% {
+           transform: rotate(0deg);
+       }
+        100% {
+            transform: rotate(360deg);
+        }
+    }
     .z-button {
         display: inline-flex;
         justify-content: center;
@@ -42,7 +56,7 @@
         &:active{
             background: var(--button-active-bg);
         }
-        >.z-icon {
+        >.icon {
             order: 1;
             margin-right: 0.3em;
             margin-left: 0
@@ -60,6 +74,14 @@
                 order: 1
             }
         }
+        .loading {
+            animation: spin 1.4s linear infinite;
+        }
+        .loadingText {
+            color: #333333;
+            cursor:not-allowed;
+        }
+
     }
 
 </style>
