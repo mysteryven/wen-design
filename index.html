@@ -1,6 +1,6 @@
 <!doctype html>
 <html lang="en">
-<headVV>
+<head>
     <meta charset="UTF-8">
     <meta name="viewport"
           content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
@@ -26,15 +26,20 @@
             margin: 100px;
         }
     </style>
-</headVV>
+</head>
 <body>
 <div id="app">
     <z-button :loading="isLoaded" @click="isLoaded = !isLoaded">按钮</z-button>
     <z-button icon="setting" icon-position="left">按钮</z-button>
     <z-button loading icon="loading" icon-position="right">按钮</z-button>
+    <z-button-group>
+        <z-button icon="left" icon-position="left">上一页</z-button>
+        <z-button icon-position="left">按钮</z-button>
+        <z-button icon="right" icon-position="right">下一页</z-button>
+    </z-button-group>
 </div>
 
 <script src="./src/app.js"></script>
-<script src="//at.alicdn.com/t/font_979327_smvpkqkgdeh.js"></script>
+<script src="//at.alicdn.com/t/font_979327_ithk2vnklj.js"></script>
 </body>
 </html>
