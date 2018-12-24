@@ -57,7 +57,8 @@ npm install -s wwz-ui
     }
     components: {
         'z-button': Button
-        'z-button-group': ButtonGroup
+        'z-button-group': ButtonGroup,
+        'z-button-select': ButtonSelect
     }
    })
 ```
