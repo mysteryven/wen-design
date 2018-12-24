@@ -1,7 +1,6 @@
 # ui-wheels
 
-[![npm](https://img.shields.io/npm/v/mustard-ui.svg)](https://www.npmjs.com/package/mustard-ui)
-[![npm](https://img.shields.io/npm/l/mustard-ui.svg)](https://www.npmjs.com/package/mustard-ui)
+[![npm](https://img.shields.io/badge/license-MIT-green.svg)](https://www.npmjs.com/package/wwz-ui)
 
 ## 提示
 
