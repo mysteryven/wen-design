@@ -1,5 +1,7 @@
 # ui-wheels
 
+[![npm](https://img.shields.io/npm/v/mustard-ui.svg)](https://www.npmjs.com/package/mustard-ui)
+[![npm](https://img.shields.io/npm/l/mustard-ui.svg)](https://www.npmjs.com/package/mustard-ui)
 
 ## 提示
 
@@ -17,13 +19,13 @@
 
 ## 开始使用
 
-*1. 安装*
+**1. 安装**
 
 ```
 npm install -s wwz-ui
 ```
 
-*2. 添加通用样式*
+**2. 添加通用样式**
 
 你可以根据下面的样式来自定义组件的大小
 
@@ -42,7 +44,7 @@ npm install -s wwz-ui
 }
 ```
 
-*3. 引入 CSS 和 JS*
+**3. 引入 CSS 和 JS**
 
 ```
    import Vue from 'vue'
@@ -61,7 +63,7 @@ npm install -s wwz-ui
    })
 ```
 
-*4. 在页面使用*
+**4. 在页面使用**
 
 ```html
  <z-button icon="setting" icon-position="left">设置</z-button>
