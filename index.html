@@ -31,23 +31,27 @@
 </head>
 <body>
 <div id="app">
-    <z-button>普通按钮</z-button>
-    <z-button icon="like" icon-position="left">点赞</z-button>
-    <z-button icon="setting" icon-position="right">设置</z-button>
-    <z-button loading icon="setting" icon-position="right">加载中</z-button>
-    <z-button loading>加载中</z-button>
-    <z-button disabled>不可用</z-button>
-    <z-button disabled>不可用</z-button>
-    <z-button :is-circle="true" icon="setting">不显示</z-button>
-    <z-button-group>
-        <z-button icon="left" icon-position="left">上一页</z-button>
-        <z-button icon-position="left">按钮组</z-button>
-        <z-button icon-position="left">按钮组</z-button>
-        <z-button icon="right" icon-position="right">下一页</z-button>
-    </z-button-group>
-    <z-button-select :list="selectList"></z-button-select>
-    <div id="test"></div>
+    <div>
+        <z-button>普通按钮</z-button>
+        <z-button icon="like" icon-position="left">点赞</z-button>
+        <z-button icon="setting" icon-position="right">设置</z-button>
+        <z-button loading icon="setting" icon-position="right">加载中</z-button>
+        <z-button loading>加载中</z-button>
+        <z-button disabled>不可用</z-button>
+        <z-button disabled>不可用</z-button>
+        <z-button :is-circle="true" icon="setting">不显示</z-button>
+        <z-button-group>
+            <z-button icon="left" icon-position="left">上一页</z-button>
+            <z-button icon-position="left">按钮组</z-button>
+            <z-button icon-position="left">按钮组</z-button>
+            <z-button icon="right" icon-position="right">下一页</z-button>
+        </z-button-group>
+        <z-button-select :list="selectList"></z-button-select>
+    </div>
+    <div style="margin-top: 20px;">
+        <z-input></z-input>
+    </div>
 </div>
-<script type="module" src="./src/app.js"></script>
+<script src="./src/app.js"></script>
 </body>
 </html>

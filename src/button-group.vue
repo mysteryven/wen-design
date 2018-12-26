@@ -15,7 +15,7 @@
         }
     }
 </script>
-<style lang="scss">
+<style lang="scss" scoped>
     .z-button-group {
         display: inline-flex;
         vertical-align: middle;

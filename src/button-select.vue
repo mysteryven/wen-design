@@ -26,7 +26,7 @@
         }
     }
 </script>
-<style lang="scss">
+<style lang="scss" scoped>
     ul, li {margin: 0; list-style: none; padding: 0;}
     .z-button-select {
         display: inline-flex;
