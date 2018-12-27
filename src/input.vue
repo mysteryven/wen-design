@@ -1,7 +1,11 @@
 <template>
     <div class="wrapper" :class="{bottom: errorPosition === 'bottom'}">
-        <input type="text" :placeholder="placeholder" :disabled="disabled"
-               :readOnly="readOnly"
+        <input type="text" :value="value"
+               :placeholder="placeholder" :disabled="disabled" :readOnly="readOnly"
+               @change="$emit('change', $event.target.value)"
+               @input="$emit('input', $event.target.value)"
+               @focus="$emit('focus', $event.target.value)"
+               @blur="$emit('blur', $event.target.value)"
         >
         <div class="error" v-if="error">
             <z-icon name="error" class="error-icon"></z-icon>
@@ -14,6 +18,7 @@
     import  Icon from './icon'
     export default {
         props: {
+            value: {},
             placeholder: {
                 default: '提示信息',
                 type: String

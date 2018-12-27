@@ -14,6 +14,7 @@ Vue.component('z-input', Input)
 let app = new Vue({
     el: '#app',
     data: {
+        message: 'hihih',
         loading: false,
         disabled: true,
         selectList: ['苹果', '香蕉', '橘子']

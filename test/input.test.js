@@ -72,4 +72,52 @@ describe('input', () => {
 
         vm.$destroy()
     })
+    it('可以触发change 事件', () => {
+        const Constructor = Vue.extend(Input)
+        const vm = new Constructor().$mount()
+        const callback = sinon.fake()
+        vm.$on('change', callback)
+        let event = new Event('change')
+        Object.defineProperty(event, 'target', {
+            value: {value: 'hi'},
+            enumerable: true
+        })
+        let useElement = vm.$el.querySelector('input')
+        useElement.dispatchEvent(event)
+        expect(callback).to.have.been.calledWith('hi')
+    })
+    it('可以触发input事件', () => {
+        const Constructor = Vue.extend(Input)
+        const vm = new Constructor().$mount()
+        const callback = sinon.fake()
+        vm.$on('input', callback)
+        let event = new Event('input')
+        Object.defineProperty(event, 'target', {
+            value: {value: 'hi'},
+            enumerable: true
+        })
+        let useElement = vm.$el.querySelector('input')
+        useElement.dispatchEvent(event)
+        expect(callback).to.have.been.calledWith('hi')
+    })
+    it('可以触发focus 事件', () => {
+        const Constructor = Vue.extend(Input)
+        const vm = new Constructor().$mount()
+        const callback = sinon.fake()
+        vm.$on('focus', callback)
+        let event = new Event('focus')
+        let useElement = vm.$el.querySelector('input')
+        useElement.dispatchEvent(event)
+        expect(callback).to.have.been.called
+    })
+    it('可以触发blur 事件', () => {
+        const Constructor = Vue.extend(Input)
+        const vm = new Constructor().$mount()
+        const callback = sinon.fake()
+        vm.$on('blur', callback)
+        let event = new Event('blur')
+        let useElement = vm.$el.querySelector('input')
+        useElement.dispatchEvent(event)
+        expect(callback).to.have.been.called
+    })
 })
