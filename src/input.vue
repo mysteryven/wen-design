@@ -1,6 +1,8 @@
 <template>
     <div class="wrapper" :class="{bottom: errorPosition === 'bottom'}">
-        <input type="text" :placeholder="placeholder">
+        <input type="text" :placeholder="placeholder" :disabled="disabled"
+               :readOnly="readOnly"
+        >
         <div class="error" v-if="error">
             <z-icon name="error" class="error-icon"></z-icon>
             <span>{{error}}</span>
@@ -27,6 +29,14 @@
                     console.log(newValue)
                     return !(newValue !== 'bottom' && newValue !== 'right');
                 }
+            },
+            disabled: {
+                default: false,
+                type: Boolean
+            },
+            readOnly: {
+                default: false,
+                type: Boolean
             }
         },
         components: {
@@ -63,7 +73,14 @@
         display: inline-flex;
         font-size: $font-size;
         border: 1px solid $border-color;
-        outline: none;
+        outline: none;border-radius: $border-radius;
+        padding: 1em 0.5em;
+        &[disabled] {
+            cursor: not-allowed;
+            &:hover {
+                border-color: $border-color;
+            }
+        }
         &:hover {
             border-color: $border-color-hover;
         }
@@ -73,8 +90,7 @@
         &:focus {
             box-shadow: inset 0 0 4px rgba(0, 0, 0, 0.2);
         }
-        border-radius: $border-radius;
-        padding: 1em 0.5em;
+
     }
     .error {
         display: inline-flex;

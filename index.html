@@ -49,8 +49,11 @@
         <z-button-select :list="selectList"></z-button-select>
     </div>
     <div style="margin-top: 20px;">
-        <z-input placeholder="hi"></z-input>
-        <z-input placeholder="hi" error-position="bottom" error="错误信息"></z-input>
+        <z-input placeholder="正常" ></z-input>
+        <z-input placeholder="禁用" disabled></z-input>
+        <z-input placeholder="只读" read-only></z-input>
+        <z-input placeholder="错误信息在默认位置" error-position="left" error="错误信息"></z-input>
+        <z-input placeholder="错误信息在下方" error-position="bottom" error="错误信息"></z-input>
 
     </div>
 </div>
