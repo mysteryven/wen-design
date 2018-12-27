@@ -1,5 +1,6 @@
 # ui-wheels
 
+[![Build Status](https://travis-ci.org/mysteryven/ui-wheels.svg?branch=master)](https://travis-ci.org/mysteryven/ui-wheels)
 [![npm](https://img.shields.io/badge/license-MIT-green.svg)](https://www.npmjs.com/package/wwz-ui)
 
 ## 提示
