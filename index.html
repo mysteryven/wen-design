@@ -12,6 +12,7 @@
             padding: 0;
             box-sizing: border-box;
         }
+
         :root {
             --button-height: 32px;
             --font-size: 14px;
@@ -24,13 +25,43 @@
             --button-disable-bg: #d8d8d8;
             --button-disable-color: #aaaaaa;
         }
+
         #app {
             margin: 100px;
+        }
+
+        .row {
+            border: 3px solid red;
+            width: 900px;
+        }
+
+        .content {
+            min-height: 100px;
+            background: #999999;
         }
     </style>
 </head>
 <body>
 <div id="app">
+    <div class="row">
+        <z-row gutter="20">
+            <z-col class="col" span="6">
+                <div class="content"></div>
+            </z-col>
+            <z-col class="col" span="6">
+                <div class="content"></div>
+            </z-col>
+            <z-col class="col" span="6">
+                <div class="content"></div>
+            </z-col>
+            <z-col class="col" span="6">
+                <div class="content"></div>
+            </z-col>
+        </z-row>
+    </div>
+
+
+    <!--
     <div>
         <z-button>普通按钮</z-button>
         <z-button icon="like" icon-position="left">点赞</z-button>
@@ -57,6 +88,7 @@
         <z-input placeholder="错误信息在下方" error-position="bottom" error="错误信息"></z-input>
 
     </div>
+    -->
 </div>
 <script src="./src/app.js"></script>
 </body>
