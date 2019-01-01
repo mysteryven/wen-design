@@ -31,14 +31,41 @@
         .row {
             border: 3px solid red;
         }
+
+        .layout {
+            height: 900px;
+        }
+        .header {
+            background: #000;
+            height: 100px;
+        }
         .content {
-            min-height: 100px;
             background: #999999;
+        }
+        .footer {
+            background: forestgreen;
+            height: 200px;
+        }
+        .sider {
+            background: red;
         }
     </style>
 </head>
 <body>
 <div id="app">
+    <z-layout class="layout">
+        <z-sider class="sider"></z-sider>
+        <z-layout>
+        <z-header class="header"></z-header>
+            <z-content class="content"></z-content>
+        <z-footer class="footer"></z-footer>
+        </z-layout>
+    </z-layout>
+
+
+
+
+    <!--
     <div class="row">
         <z-row gutter="20">
             <z-col  span="6">
@@ -49,9 +76,6 @@
             </z-col>
         </z-row>
     </div>
-
-
-    <!--
     <div>
         <z-button>普通按钮</z-button>
         <z-button icon="like" icon-position="left">点赞</z-button>
