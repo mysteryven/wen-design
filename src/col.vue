@@ -6,18 +6,10 @@
 <script>
     export default {
         props: {
-            span: {
-                type: [Number, String]
-            },
-            offset: {
-                type: [Number, String]
-            },
-            ipad: {
-                type: Object
-            },
-            pc: {
-                type: Object
-            }
+            span: { type: [Number, String] },
+            offset: { type: [Number, String] },
+            ipad: { type: Object },
+            pc: { type: Object }
         },
         data() {
             return {
@@ -25,7 +17,10 @@
             }
         },
         methods: {
-            computedSpanAndOffset(options, str) {
+            computedSpanAndOffset(options, str="") {
+                if (!options) {
+                    return []
+                }
                 let array = []
                 if (options.span) {
                     array.push(`col-${str}-${options.span}`)
