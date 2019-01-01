@@ -8,7 +8,8 @@
         props: {
             gutter: {
                 type: [String, Number]
-            }
+            },
+
         },
         computed: {
             rowStyle() {

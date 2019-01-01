@@ -25,16 +25,12 @@
             --button-disable-bg: #d8d8d8;
             --button-disable-color: #aaaaaa;
         }
-
         #app {
             margin: 100px;
         }
-
         .row {
             border: 3px solid red;
-            width: 900px;
         }
-
         .content {
             min-height: 100px;
             background: #999999;
@@ -45,16 +41,10 @@
 <div id="app">
     <div class="row">
         <z-row gutter="20">
-            <z-col class="col" span="6">
+            <z-col  span="6" offset="2" :ipad="{span: 12, offset: 0}" :pc="{span: 23, offset: 0}">
                 <div class="content"></div>
             </z-col>
-            <z-col class="col" span="6">
-                <div class="content"></div>
-            </z-col>
-            <z-col class="col" span="6">
-                <div class="content"></div>
-            </z-col>
-            <z-col class="col" span="6">
+            <z-col  span="6" offset="2" :ipad="{span: 12, offset: 0}" :pc="{span: 1, offset: 0}">
                 <div class="content"></div>
             </z-col>
         </z-row>
