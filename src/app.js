@@ -11,6 +11,9 @@ import Header from './header'
 import Content from './content'
 import Sider from './sider'
 import Footer from './footer'
+import Toast from './toast'
+
+import 'plugin'
 
 Vue.component('z-button', Button)
 Vue.component('z-icon', Icon)
@@ -24,6 +27,7 @@ Vue.component('z-header', Header)
 Vue.component('z-content', Content)
 Vue.component('z-sider', Sider)
 Vue.component('z-footer', Footer)
+Vue.component('z-toast', Toast)
 
 let app = new Vue({
     el: '#app',

@@ -26,6 +26,7 @@
   "homepage": "https://github.com/mysteryven/ui-wheels#readme",
   "dependencies": {
     "chai-spies": "^1.0.0",
+    "plugin": "^0.3.3",
     "vue": "^2.5.21",
     "vue-hot-reload-api": "^2.3.1"
   },
