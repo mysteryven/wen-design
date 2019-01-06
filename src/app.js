@@ -13,7 +13,7 @@ import Sider from './sider'
 import Footer from './footer'
 import Toast from './toast'
 
-import 'plugin'
+import plugin from './plugin'
 
 Vue.component('z-button', Button)
 Vue.component('z-icon', Icon)
@@ -29,13 +29,37 @@ Vue.component('z-sider', Sider)
 Vue.component('z-footer', Footer)
 Vue.component('z-toast', Toast)
 
+Vue.use(plugin)
+
 let app = new Vue({
     el: '#app',
     data: {
         message: 'hihih',
         loading: false,
         disabled: true,
-        selectList: ['苹果', '香蕉', '橘子']
+        selectList: ['苹果', '香蕉', '橘子'],
+        num: 0
+    },
+    methods: {
+        showToast() {
+            this.num++
+            this.$toast('谢谢使用！' + this.num, {
+                showClose: true,
+                position: 'middle',
+                autoClose: false,
+                duration: 10,
+                closeButton: {
+                   text: '关闭了吧',
+                   callback() {
+                       console.log('我点击了关闭按钮，并触发了回调事件')
+                   }
+                },
+                closedCallback() {
+                    console.log('关闭之后的回调，关闭后自动执行')
+                }
+            })
+        }
+
     }
 })
 
