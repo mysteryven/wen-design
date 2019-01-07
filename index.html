@@ -28,35 +28,25 @@
         #app {
             margin: 100px;
         }
-        .row {
-            border: 3px solid red;
-        }
 
-        .layout {
-            height: 900px;
-        }
-        .header {
-            background: #000;
-            height: 100px;
-        }
-        .content {
-            background: #999999;
-        }
-        .footer {
-            background: forestgreen;
-            height: 200px;
-        }
-        .sider {
-            background: red;
-        }
     </style>
 </head>
 <body>
 <div id="app">
 
-    <button @click="showToast">点我</button>
+    <z-tab>
+        <z-head>
+            <z-head-item>桃泽绘里香</z-head-item>
+            <z-head-item>大桥未昂</z-head-item>
+        </z-head>
+        <z-body>
+            <z-body-item>桃泽绘里香是我最喜欢的 AV 女优</z-body-item>
+            <z-body-item>大桥是我乱打的一个名字</z-body-item>
+        </z-body>
+    </z-tab>
 
     <!--
+    <button @click="showToast">点我</button>
     <z-layout class="layout">
         <z-sider class="sider"></z-sider>
         <z-layout>
