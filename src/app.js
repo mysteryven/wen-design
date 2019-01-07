@@ -12,6 +12,13 @@ import Content from './content'
 import Sider from './sider'
 import Footer from './footer'
 import Toast from './toast'
+import Tab from './tab.vue'
+import TabHead from './tab-head'
+import TabBody from './tab-body'
+import TabHeadItem from './tab-head-item'
+import TabBodyItem from './tab-body-item'
+
+
 
 import plugin from './plugin'
 
@@ -28,6 +35,11 @@ Vue.component('z-content', Content)
 Vue.component('z-sider', Sider)
 Vue.component('z-footer', Footer)
 Vue.component('z-toast', Toast)
+Vue.component('z-tab', Tab)
+Vue.component('z-tab-body', TabBody)
+Vue.component('z-tab-head', TabHead)
+Vue.component('z-head-item', TabHeadItem)
+Vue.component('z-body-item', TabBodyItem)
 
 Vue.use(plugin)
 
