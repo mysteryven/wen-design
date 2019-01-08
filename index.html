@@ -31,7 +31,9 @@
         .head, .content {
             display: block;
         }
-
+        .red-font {
+            color: red;
+        }
 
     </style>
 </head>
@@ -39,8 +41,8 @@
 <div id="app">
     <z-tabs selected="finance">
         <z-tabs-head class="head">
-            <z-tabs-item name="finance">金融</z-tabs-item>
-            <z-tabs-item name="sports">体育界</z-tabs-item>
+            <z-tabs-item name="finance" active-class="red-font">金融</z-tabs-item>
+            <z-tabs-item class="sports" name="sports" active-class="red-font">体育界</z-tabs-item>
         </z-tabs-head>
         <z-tabs-body class="content">
             <z-tabs-pane name="finance">内容1</z-tabs-pane>

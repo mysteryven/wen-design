@@ -50,7 +50,8 @@ let app = new Vue({
         loading: false,
         disabled: true,
         selectList: ['苹果', '香蕉', '橘子'],
-        num: 0
+        num: 0,
+        customerClasses: ['test']
     },
     methods: {
         showToast() {
