@@ -28,23 +28,25 @@
         #app {
             margin: 100px;
         }
+        .head, .content {
+            display: block;
+        }
+
 
     </style>
 </head>
 <body>
 <div id="app">
-
-    <z-tab>
-        <z-tab-head>
-            <z-head-item>桃泽绘里香</z-head-item>
-            <z-head-item>大桥未昂</z-head-item>
-        </z-tab-head>
-        <z-tab-body>
-            <z-body-item>桃泽绘里香是我最喜欢的 AV 女优</z-body-item>
-            <z-body-item>大桥是我乱打的一个名字</z-body-item>
-        </z-tab-body>
-    </z-tab>
-
+    <z-tabs selected="finance">
+        <z-tabs-head class="head">
+            <z-tabs-item name="finance">金融</z-tabs-item>
+            <z-tabs-item name="sports">体育界</z-tabs-item>
+        </z-tabs-head>
+        <z-tabs-body class="content">
+            <z-tabs-pane name="finance">内容1</z-tabs-pane>
+            <z-tabs-pane name="sports">内容2</z-tabs-pane>
+        </z-tabs-body>
+    </z-tabs>
     <!--
     <button @click="showToast">点我</button>
     <z-layout class="layout">
