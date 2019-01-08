@@ -35,7 +35,7 @@
             classes() {
                 let activeClass = this.activeClass
                 return {
-                    active: this.active && !this.custom,
+                    active: this.active && !this.activeClass,
                     [activeClass]: this.active
                 }
             }
