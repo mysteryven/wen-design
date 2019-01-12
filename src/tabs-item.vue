@@ -1,6 +1,5 @@
 <template>
-    <div class="tabs-item" :class="classes" @click="switchTab">
-        {{custom}}
+    <div :data-name="name" :data-active="activeName" class="tabs-item" :class="classes" @click="switchTab">
         <slot></slot>
     </div>
 </template>
@@ -33,11 +32,13 @@
         },
         computed: {
             classes() {
-                let activeClass = this.activeClass
+                let active = this.activeClass ? this.activeClass : 'active'
                 return {
-                    active: this.active && !this.activeClass,
-                    [activeClass]: this.active
+                    [active]: this.active
                 }
+            },
+            activeName()  {
+                return this.activeClass ? this.activeClass : 'active'
             }
         }
     }

@@ -29,7 +29,6 @@
             this.$children.forEach(vm => {
                 if (vm.$options.name = 'z-tabs-head') {
                    vm.$children.forEach(childVm => {
-                       console.log(childVm)
                        if (childVm.$options.name === 'z-tabs-item' && childVm.name === this.selected) {
                            this.eventBus.$emit('update:selected', this.selected, childVm)
                        }

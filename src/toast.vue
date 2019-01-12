@@ -29,7 +29,7 @@
                 type: Boolean
             },
             duration: {
-                default: 3,
+                default: 1,
                 type: Number
             },
             closeButton: {
