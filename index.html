@@ -42,6 +42,22 @@
 </head>
 <body>
 <div id="app">
+    <z-popover trigger="hover">
+        <template slot="content">
+            欢迎注册使用我的组件
+        </template>
+        <slot>
+            <z-button>提示</z-button>
+        </slot>
+    </z-popover>
+    <z-popover trigger="focus">
+        <template slot="content">
+            欢迎注册使用我的组件
+        </template>
+        <slot>
+            <z-button>提示</z-button>
+        </slot>
+    </z-popover>
     <z-popover>
         <template slot="content">
             欢迎注册使用我的组件
