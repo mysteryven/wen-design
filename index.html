@@ -34,12 +34,23 @@
         .red-font {
             color: red;
         }
+        body {
+            border: 1px solid red
+        }
 
     </style>
 </head>
 <body>
 <div id="app">
-
+    <z-popover>
+        <template slot="content">
+            欢迎注册使用我的组件
+        </template>
+        <slot>
+            <z-button>提示</z-button>
+        </slot>
+    </z-popover>
+    <!--
     <z-tabs selected="finance">
         <z-tabs-head class="head">
             <z-tabs-item name="finance">金融</z-tabs-item>
@@ -50,7 +61,7 @@
             <z-tabs-pane name="sports">内容2</z-tabs-pane>
         </z-tabs-body>
     </z-tabs>
-
+    -->
     <!--
     <button @click="showToast">点我</button>
     <!--
