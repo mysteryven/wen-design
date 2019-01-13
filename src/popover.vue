@@ -40,17 +40,13 @@
                 })
             } else if (this.trigger === 'hover') {
                 this.$refs.popover.addEventListener('mouseenter', this.onHoverOpen)
-                this.$refs.popover.addEventListener('mouseleave', (e)=>{
-                    setTimeout(()=> {
-                        if (e.target === this.$refs.popover) {
-                            return
-                        }
-                        this.onHoverClose()
-                    }, 2000)
-                })
+                this.$refs.popover.addEventListener('mouseleave', this.onHoverClose)
             } else if (this.trigger === 'focus') {
                 this.$refs.trigger.addEventListener('mousedown', () => {
                     this.visible = true
+                    this.$nextTick(() => {
+                        this.positionContent()
+                    })
                 })
                 this.$refs.trigger.addEventListener('mouseup', () => {
                     this.visible = false
@@ -93,17 +89,17 @@
                 let {left, top, width, height} = trigger.getBoundingClientRect()
                 let {height: height2} = content.getBoundingClientRect()
                 if (this.position === 'top') {
-                    content.style.left = left + width / 2 + 'px'
-                    content.style.top = top + 'px'
+                    content.style.left = left + window.scrollX + width / 2 + 'px'
+                    content.style.top = top + window.scrollY + 'px'
                 } else if (this.position === 'bottom') {
-                    content.style.left = left + width / 2 + 'px'
-                    content.style.top = top + 'px'
+                    content.style.left = left + window.scrollX + width / 2 + 'px'
+                    content.style.top = top + window.scrollY + 'px'
                 } else if (this.position === 'left') {
-                    content.style.left = left + 'px'
-                    content.style.top= top - (height2-height)/2  + 'px'
+                    content.style.left = left + window.scrollX + 'px'
+                    content.style.top= top + window.scrollY - (height2-height)/2  + 'px'
                 } else if (this.position === 'right') {
-                    content.style.left = left + width +  'px'
-                    content.style.top= top - (height2-height)/2 + 'px'
+                    content.style.left = left + window.scrollX + width +  'px'
+                    content.style.top= top + window.scrollY - (height2-height)/2 + 'px'
                 }
 
             },
@@ -132,6 +128,9 @@
         box-shadow: 0 2px 12px 0 rgba(0, 0, 0, .1);
         border-radius: 4px;
         border: 1px solid #ebeef5;
+        word-break: break-all;
+        min-width: 100px;
+        max-width: 400px;
         &.position-top {
             transform: translate(-50%, -100%);
             padding: 1em;
