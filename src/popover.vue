@@ -42,18 +42,9 @@
                 this.$refs.popover.addEventListener('mouseenter', this.onHoverOpen)
                 this.$refs.popover.addEventListener('mouseleave', this.onHoverClose)
             } else if (this.trigger === 'focus') {
-                this.$refs.trigger.addEventListener('mousedown', () => {
-                    this.visible = true
-                    this.$nextTick(() => {
-                        this.positionContent()
-                    })
-                })
-                this.$refs.trigger.addEventListener('mouseup', () => {
-                    this.visible = false
-                })
+                this.$refs.trigger.addEventListener('mousedown', this.onFocusOpen)
+                this.$refs.trigger.addEventListener('mouseup', this.onFocusClose)
             }
-
-
         },
         methods: {
             onClick() {
@@ -107,13 +98,53 @@
                 this.visible = true
                 this.$nextTick(() => {
                     this.positionContent()
+                    this.$refs.content.addEventListener('mouseenter', () => {
+                        this.visible = true
+                    })
                 })
             },
             onHoverClose() {
                 this.visible = false
+            },
+            onHoverClose() {
+                let isContent = false
+                this.$refs.content.addEventListener('mouseenter', (childEvent) => {
+                    isContent = true
+                })
+                this.$refs.content.addEventListener('mouseleave', () => {
+                    this.visible = false
+                })
+                setTimeout(()=> {
+                    this.$nextTick(() => {
+                        if (!isContent) {
+                            this.visible = false
+                        }
+                    })
+                }, 200)
+            },
+            onFocusOpen() {
+                this.visible = true
+                this.$nextTick(() => {
+                    this.positionContent()
+                })
+            },
+            onFocusClose() {
+                this.visible = false
             }
 
-        }
+        },
+        beforeDestroy() {
+            let popover = this.$refs.popover;
+            if (this.trigger === 'click') {
+                popover.removeEventListener('click', this.onClick);
+            } else if (this.trigger === 'hover'){
+                popover.removeEventListener('mouseenter', this.onHoverOpen);
+                popover.removeEventListener('mouseleave', this.onHoverClose);
+            } else if (this.trigger === 'focus') {
+                popover.removeEventListener('mousedown', this.onFocusOpen);
+                popover.removeEventListener('mouseup', this.onFocusClose);
+            }
+        },
     }
 </script>
 <style scoped lang="scss">
