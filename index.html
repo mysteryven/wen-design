@@ -58,7 +58,7 @@
             <z-button>提示</z-button>
         </slot>
     </z-popover>
-    <z-popover>
+    <z-popover position="bottom">
         <template slot="content">
             欢迎注册使用我的组件
         </template>
@@ -66,18 +66,33 @@
             <z-button>提示</z-button>
         </slot>
     </z-popover>
-    <!--
-    <z-tabs selected="finance">
-        <z-tabs-head class="head">
-            <z-tabs-item name="finance">金融</z-tabs-item>
-            <z-tabs-item class="sports" name="sports" active-class="red-font">体育界</z-tabs-item>
-        </z-tabs-head>
-        <z-tabs-body class="content">
-            <z-tabs-pane name="finance">内容1</z-tabs-pane>
-            <z-tabs-pane name="sports">内容2</z-tabs-pane>
-        </z-tabs-body>
-    </z-tabs>
-    -->
+    <z-popover position="left">
+        <template slot="content">
+            欢迎注册使用我的组件
+        </template>
+        <slot>
+            <z-button>提示</z-button>
+        </slot>
+    </z-popover>
+    <z-popover position="right">
+        <template slot="content">
+            欢迎注册使用我的组件
+        </template>
+        <slot>
+            <z-button>提示</z-button>
+        </slot>
+    </z-popover>
+    <!--<z-button>hi</z-button>-->
+    <!--<z-tabs selected="finance">-->
+        <!--<z-tabs-head class="head">-->
+            <!--<z-tabs-item name="finance">金融</z-tabs-item>-->
+            <!--<z-tabs-item class="sports" name="sports" active-class="red-font">体育界</z-tabs-item>-->
+        <!--</z-tabs-head>-->
+        <!--<z-tabs-body class="content">-->
+            <!--<z-tabs-pane name="finance">内容1</z-tabs-pane>-->
+            <!--<z-tabs-pane name="sports">内容2</z-tabs-pane>-->
+        <!--</z-tabs-body>-->
+    <!--</z-tabs>-->
     <!--
     <button @click="showToast">点我</button>
     <!--

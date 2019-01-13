@@ -1,7 +1,7 @@
 <template>
     <div class="popover" ref="popover">
-        <div class="content" ref="content" v-if="visible">
-            <slot name="content"> </slot>
+        <div class="content" ref="content" v-if="visible" :class="{[`position-${position}`]: true}">
+            <slot name="content"></slot>
         </div>
         <div ref="trigger">
             <slot></slot>
@@ -12,22 +12,27 @@
     export default {
         name: 'zPopover',
         data() {
-           return {
-               visible: false
-           }
+            return {
+                visible: false
+            }
         },
         props: {
             trigger: {
                 type: String,
                 default: 'click',
                 validator(value) {
-                   return ['click', 'hover', 'focus'].indexOf(value) !== -1
+                    return ['click', 'hover', 'focus'].indexOf(value) !== -1
+                }
+            },
+            position: {
+                type: String,
+                default: 'top',
+                validator(value) {
+                    return ['top', 'right', 'left', 'bottom'].indexOf(value) !== -1
                 }
             }
         },
-        computed: {
-
-        },
+        computed: {},
         mounted() {
             if (this.trigger === 'click') {
                 this.$refs.trigger.addEventListener('click', () => {
@@ -35,7 +40,14 @@
                 })
             } else if (this.trigger === 'hover') {
                 this.$refs.popover.addEventListener('mouseenter', this.onHoverOpen)
-                this.$refs.popover.addEventListener('mouseleave', this.onHoverClose)
+                this.$refs.popover.addEventListener('mouseleave', (e)=>{
+                    setTimeout(()=> {
+                        if (e.target === this.$refs.popover) {
+                            return
+                        }
+                        this.onHoverClose()
+                    }, 2000)
+                })
             } else if (this.trigger === 'focus') {
                 this.$refs.trigger.addEventListener('mousedown', () => {
                     this.visible = true
@@ -58,6 +70,7 @@
             open() {
                 this.visible = true
                 this.$nextTick(() => {
+                    this.positionContent()
                     document.body.addEventListener('click', this.onDocumentClick)
                 })
             },
@@ -68,18 +81,37 @@
             onDocumentClick(e) {
                 let {trigger, content, popover} = this.$refs
                 if (this.$refs && (trigger.contains(e.target) || trigger === e.target)) {
-                    console.log('trigger click')
                     return
                 } else if (this.$refs && (content === e.target || trigger.contains(e.target))) {
-                    console.log('content click')
                     return
                 }
                 this.close()
-                console.log('document click')
+            },
+            positionContent() {
+                let {trigger, content} = this.$refs
+                document.body.appendChild(content)
+                let {left, top, width, height} = trigger.getBoundingClientRect()
+                let {height: height2} = content.getBoundingClientRect()
+                if (this.position === 'top') {
+                    content.style.left = left + width / 2 + 'px'
+                    content.style.top = top + 'px'
+                } else if (this.position === 'bottom') {
+                    content.style.left = left + width / 2 + 'px'
+                    content.style.top = top + 'px'
+                } else if (this.position === 'left') {
+                    content.style.left = left + 'px'
+                    content.style.top= top - (height2-height)/2  + 'px'
+                } else if (this.position === 'right') {
+                    content.style.left = left + width +  'px'
+                    content.style.top= top - (height2-height)/2 + 'px'
+                }
+
             },
             onHoverOpen() {
-                console.log(1)
                 this.visible = true
+                this.$nextTick(() => {
+                    this.positionContent()
+                })
             },
             onHoverClose() {
                 this.visible = false
@@ -92,11 +124,145 @@
     .popover {
         display: inline-block;
         position: relative;
-        .content {
-           border: 1px solid red;
-           position: absolute;
-           bottom: 100%;
-       }
     }
 
+    .content {
+        position: absolute;
+        background: white;
+        box-shadow: 0 2px 12px 0 rgba(0, 0, 0, .1);
+        border-radius: 4px;
+        border: 1px solid #ebeef5;
+        &.position-top {
+            transform: translate(-50%, -100%);
+            padding: 1em;
+            margin-top: -16px;
+            &::before {
+                content: '';
+                position: absolute;
+                top: 100%;
+                width: 10px;
+                height: 10px;
+                background: white;
+                left: 50%;
+                border: 1px solid transparent;
+                box-shadow: 0 0 1px rgba(0, 0, 0, 0.3);
+                transform: rotate(45deg) translateY(-50%);
+                transform-origin: top;
+                margin-left: -5px;
+            }
+            &::after {
+                content: '';
+                position: absolute;
+                border: 1px solid transparent;
+
+                bottom: 0%;
+                width: 20px;
+                height: 16px;
+                left: 50%;
+                background: white;
+                transform-origin: top;
+                margin-left: -8px;
+
+            }
+        }
+        &.position-bottom {
+            transform: translate(-50%, 100%);
+            padding: 1em;
+            margin-top: -6px;
+            &::before {
+                content: '';
+                position: absolute;
+                bottom: 100%;
+                width: 10px;
+                height: 10px;
+                background: white;
+                left: 50%;
+                border: 1px solid transparent;
+                box-shadow: 0 0 1px rgba(0, 0, 0, 0.3);
+                transform: rotate(45deg) translateY(50%);
+                transform-origin: bottom;
+                margin-left: -5px;
+            }
+            &::after {
+                content: '';
+                position: absolute;
+                border: 1px solid transparent;
+                background: white;
+                top: 0%;
+                width: 20px;
+                height: 16px;
+                left: 50%;
+                transform-origin: top;
+                margin-left: -8px;
+
+            }
+        }
+
+        &.position-left{
+            transform: translateX(-100%);
+            padding: 1em;
+            margin-left: -16px;
+            &::before {
+                content: '';
+                position: absolute;
+                left: 100%;
+                width: 10px;
+                height: 10px;
+                background: white;
+                top: 50%;
+                border: 1px solid transparent;
+                box-shadow: 0 0 1px rgba(0, 0, 0, 0.3);
+                transform: translateY(-50%) rotate(45deg);
+                margin-left: -5px;
+            }
+            &::after {
+                content: '';
+                position: absolute;
+                border: 1px solid transparent;
+                background: white;
+                top: 50%;
+                width: 10px;
+                height: 20px;
+                right: 0%;
+                transform: translateY(-50%);
+                transform-origin: left;
+
+            }
+        }
+        &.position-right{
+            margin-left: 16px;
+            padding: 1em;
+            &::before {
+                content: '';
+                position: absolute;
+                right: 100%;
+                width: 10px;
+                height: 10px;
+                background: white;
+                top: 50%;
+                border: 1px solid transparent;
+                box-shadow: 0 0 1px rgba(0, 0, 0, 0.3);
+                transform: translate(50%, -50%) rotate(45deg);
+            }
+            &::after {
+                content: '';
+                position: absolute;
+                border: 1px solid transparent;
+                background: white;
+                top: 50%;
+                width: 10px;
+                height: 20px;
+                left: 0%;
+                transform: translate(0%, -50%);
+                transform-origin: left;
+
+            }
+        }
+
+
+
+
+
+
+    }
 </style>
