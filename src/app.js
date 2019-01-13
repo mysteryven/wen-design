@@ -19,6 +19,8 @@ import TabsItem from './tabs-item'
 import TabsPane from './tabs-pane'
 import plugin from './plugin'
 import Popover from './popover'
+import Collapse from './collapse'
+import CollapseItem from './collapse-item'
 
 Vue.component('z-button', Button)
 Vue.component('z-icon', Icon)
@@ -39,6 +41,8 @@ Vue.component('z-tabs-head', TabsHead)
 Vue.component('z-tabs-item', TabsItem)
 Vue.component('z-tabs-pane', TabsPane)
 Vue.component('z-popover', Popover)
+Vue.component('z-collapse', Collapse)
+Vue.component('z-collapse-item', CollapseItem)
 
 Vue.use(plugin)
 
@@ -50,7 +54,8 @@ let app = new Vue({
         disabled: true,
         selectList: ['苹果', '香蕉', '橘子'],
         num: 0,
-        customerClasses: ['test']
+        customerClasses: ['test'],
+        selectedItems: ['1', '2']
     },
     methods: {
         showToast() {

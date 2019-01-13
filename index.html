@@ -37,14 +37,25 @@
         body {
             border: 1px solid red
         }
-        #app {
-            margin-top: 1000px;
-        }
+
 
     </style>
 </head>
 <body>
 <div id="app">
+    <z-collapse :selected.sync="selectedItems">
+        <z-collapse-item title="标题1" name="1">
+           内容1
+        </z-collapse-item>
+        <z-collapse-item title="标题2" name="2">
+           内容2
+        </z-collapse-item>
+        <z-collapse-item title="标题3" name="3">
+           内容3
+        </z-collapse-item>
+    </z-collapse>
+    {{selectedItems}}
+    <!--
     <z-popover trigger="hover">
         <template slot="content">
             欢迎注册使用我的组件
