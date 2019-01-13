@@ -35,9 +35,7 @@
         computed: {},
         mounted() {
             if (this.trigger === 'click') {
-                this.$refs.trigger.addEventListener('click', () => {
-                    this.onClick()
-                })
+                this.$refs.trigger.addEventListener('click', this.onClick)
             } else if (this.trigger === 'hover') {
                 this.$refs.popover.addEventListener('mouseenter', this.onHoverOpen)
                 this.$refs.popover.addEventListener('mouseleave', this.onHoverClose)
@@ -66,7 +64,7 @@
                 document.body.removeEventListener('click', this.onDocumentClick)
             },
             onDocumentClick(e) {
-                let {trigger, content, popover} = this.$refs
+                let {trigger, content} = this.$refs
                 if (this.$refs && (trigger.contains(e.target) || trigger === e.target)) {
                     return
                 } else if (this.$refs && (content === e.target || trigger.contains(e.target))) {
@@ -77,21 +75,31 @@
             positionContent() {
                 let {trigger, content} = this.$refs
                 document.body.appendChild(content)
+
                 let {left, top, width, height} = trigger.getBoundingClientRect()
-                let {height: height2} = content.getBoundingClientRect()
-                if (this.position === 'top') {
-                    content.style.left = left + window.scrollX + width / 2 + 'px'
-                    content.style.top = top + window.scrollY + 'px'
-                } else if (this.position === 'bottom') {
-                    content.style.left = left + window.scrollX + width / 2 + 'px'
-                    content.style.top = top + window.scrollY + 'px'
-                } else if (this.position === 'left') {
-                    content.style.left = left + window.scrollX + 'px'
-                    content.style.top= top + window.scrollY - (height2-height)/2  + 'px'
-                } else if (this.position === 'right') {
-                    content.style.left = left + window.scrollX + width +  'px'
-                    content.style.top= top + window.scrollY - (height2-height)/2 + 'px'
+                let {height: contentHeight} = content.getBoundingClientRect()
+
+                let positions = {
+                    top: {
+                        left: left + window.scrollX + width / 2 + 'px',
+                        top: top + window.scrollY + 'px'
+                    },
+                    bottom: {
+                        left: left + window.scrollX + width / 2 + 'px',
+                        top: top + window.scrollY + 'px'
+                    },
+                    left: {
+                        left: left + window.scrollX + 'px',
+                        top: top + window.scrollY - (contentHeight-height)/2  + 'px'
+                    },
+                    right: {
+                        left: left + window.scrollX + width +  'px',
+                        top: top + window.scrollY - (contentHeight-height)/2 + 'px'
+                    }
                 }
+
+                content.style.left = positions[this.position].left
+                content.style.top = positions[this.position].top
 
             },
             onHoverOpen() {
@@ -285,14 +293,7 @@
                 left: 0%;
                 transform: translate(0%, -50%);
                 transform-origin: left;
-
             }
         }
-
-
-
-
-
-
     }
 </style>

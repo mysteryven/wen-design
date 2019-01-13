@@ -21,6 +21,7 @@ describe('TabsItem', () => {
             }
         }).$mount()
         expect(vm.$el.getAttribute('data-name')).to.eq('xxx')
+        vm.$destroy()
     })
     it('接受自定义active 类', () => {
         const Constructor = Vue.extend(TabsItem)
@@ -31,6 +32,7 @@ describe('TabsItem', () => {
         }).$mount()
         console.log(vm.$el)
         expect(vm.$el.getAttribute('data-active')).to.eq('custom')
+        vm.$destroy()
 
     })
 })

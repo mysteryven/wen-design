@@ -44,6 +44,8 @@ describe('tabs', () => {
             let x = vm.$el.querySelector(`.tabs-item[data-name="finance"]`)
             expect(x.classList.contains('active')).to.eq(true)
             done()
+            vm.$el.remove()
+            vm.$destroy()
         })
 
 })
