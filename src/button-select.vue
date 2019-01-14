@@ -27,6 +27,17 @@
     }
 </script>
 <style lang="scss" scoped>
+    $button-height: 32px;
+    $font-size: 14px;
+    $button-bg: white;
+    $border-color: #999;
+    $button-active-bg: #eee;
+    $button-border-radius: 4px;
+    $color: #333;
+    $border-color-hover: #666;
+    $button-disable-bg: #d8d8d8;
+    $button-disable-color: #aaaaaa;
+
     ul, li {margin: 0; list-style: none; padding: 0;}
     .z-button-select {
         display: inline-flex;
@@ -38,8 +49,8 @@
             top: 130%;
             left: 0px;
             box-shadow: 0px 0px 3px rgba(0, 0, 0, 0.3);
-            font-size: var(--font-size);
-            border-radius: var(--button-border-radius);
+            font-size: $font-size;
+            border-radius: $button-border-radius;
             background: white;
             &::before {
                 content: '';
@@ -65,7 +76,7 @@
             li {
                 padding: 0.2em 4em 0.5em 1em;
                 &:hover {
-                    background: var(--button-active-bg);
+                    background: $button-active-bg;
                 }
             }
         }

@@ -41,6 +41,17 @@
 </script>
 
 <style lang="scss" scoped>
+    $button-height: 32px;
+    $font-size: 14px;
+    $button-bg: white;
+    $border-color: #999;
+    $button-active-bg: #eee;
+    $button-border-radius: 4px;
+    $color: #333;
+    $border-color-hover: #666;
+    $button-disable-bg: #d8d8d8;
+    $button-disable-color: #aaaaaa;
+
     @keyframes spin {
        0% {
            transform: rotate(0deg);
@@ -54,20 +65,20 @@
         justify-content: center;
         align-items: center;
         cursor: pointer;
-        font-size: var(--font-size);
+        font-size: $font-size;
         padding: 0 1em;
-        border: 1px solid var(--border-color);
-        height: var(--button-height);
-        background: var(--button-bg);
-        border-radius: var(--button-border-radius);
+        border: 1px solid $border-color;
+        height: $button-height;
+        background: $button-bg;
+        border-radius: $button-border-radius;
         outline: none;
         vertical-align: middle;
         &:hover {
-            border: 1px solid var(--border-color-hover);
+            border: 1px solid $border-color-hover;
             box-shadow: 1px 1px 10px rgba(0, 0, 0,0.1);
         }
         &:active{
-            background: var(--button-active-bg);
+            background: $button-active-bg;
         }
         >.icon {
             order: 1;
@@ -96,8 +107,8 @@
     }
     .disabled {
         cursor: not-allowed;
-        background-color: var(--button-disable-bg);
-        color: var(--button-disable-color);
+        background-color: $button-disable-bg;
+        color: $button-disable-color;
     }
     .disabled:hover {
         box-shadow: none;
@@ -106,7 +117,7 @@
 
     .circle {
         border-radius: 50%;
-        width: var(--button-height);
+        width: $button-height;
         padding: 0;
         display: inline-flex;
         justify-content: center;

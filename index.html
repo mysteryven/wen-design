@@ -14,16 +14,7 @@
         }
 
         :root {
-            --button-height: 32px;
-            --font-size: 14px;
-            --button-bg: white;
-            --border-color: #999;
-            --button-active-bg: #eee;
-            --button-border-radius: 4px;
-            --color: #333;
-            --border-color-hover: #666;
-            --button-disable-bg: #d8d8d8;
-            --button-disable-color: #aaaaaa;
+
         }
         #app {
             margin: 100px;
@@ -54,8 +45,6 @@
            内容3
         </z-collapse-item>
     </z-collapse>
-    {{selectedItems}}
-    <!--
     <z-popover trigger="hover">
         <template slot="content">
             欢迎注册使用我的组件
@@ -96,20 +85,18 @@
             <z-button>提示</z-button>
         </slot>
     </z-popover>
-    <!--<z-button>hi</z-button>-->
-    <!--<z-tabs selected="finance">-->
-        <!--<z-tabs-head class="head">-->
-            <!--<z-tabs-item name="finance">金融</z-tabs-item>-->
-            <!--<z-tabs-item class="sports" name="sports" active-class="red-font">体育界</z-tabs-item>-->
-        <!--</z-tabs-head>-->
-        <!--<z-tabs-body class="content">-->
-            <!--<z-tabs-pane name="finance">内容1</z-tabs-pane>-->
-            <!--<z-tabs-pane name="sports">内容2</z-tabs-pane>-->
-        <!--</z-tabs-body>-->
-    <!--</z-tabs>-->
-    <!--
+    <z-button>hi</z-button>
+    <z-tabs selected="finance">
+        <z-tabs-head class="head">
+            <z-tabs-item name="finance">金融</z-tabs-item>
+            <z-tabs-item class="sports" name="sports" active-class="red-font">体育界</z-tabs-item>
+        </z-tabs-head>
+        <z-tabs-body class="content">
+            <z-tabs-pane name="finance">内容1</z-tabs-pane>
+            <z-tabs-pane name="sports">内容2</z-tabs-pane>
+        </z-tabs-body>
+    </z-tabs>
     <button @click="showToast">点我</button>
-    <!--
     <z-layout class="layout">
         <z-sider class="sider"></z-sider>
         <z-layout>
@@ -154,7 +141,6 @@
         <z-input placeholder="错误信息在下方" error-position="bottom" error="错误信息"></z-input>
 
     </div>
-    -->
 </div>
 <script src="./src/app.js"></script>
 </body>
