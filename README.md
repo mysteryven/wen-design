@@ -54,10 +54,10 @@ npm install -s wwz-ui
    new Vue({
     el: '#app',
     data: {
-        list: [a, b, c]
-    }
+        list: ['a', 'b', 'c']
+    },
     components: {
-        'z-button': Button
+        'z-button': Button,
         'z-button-group': ButtonGroup,
         'z-button-select': ButtonSelect
     }
