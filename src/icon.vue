@@ -1,4 +1,5 @@
 <template>
+
     <svg class="z-icon" aria-hidden="true">
         <use :xlink:href="`#icon-${name}`"></use>
     </svg>
@@ -14,5 +15,4 @@
         width: 1em;
         height: 1em;
     }
-
 </style>

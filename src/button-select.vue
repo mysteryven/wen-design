@@ -7,7 +7,12 @@
     </div>
 </template>
 <script>
+    import Button from './button'
+
     export default {
+        components: {
+            'z-button': Button
+        },
         props: ['list'],
         data: function () {
             return {

@@ -1,12 +1,14 @@
 {
   "name": "wwz-ui",
-  "version": "0.0.4",
+  "version": "0.1.0",
   "description": "this is a ui framework created by VUE  ",
   "main": "dist/index.js",
   "scripts": {
     "dev-test": "parcel watch test/* --no-cache & karma start",
     "test": "parcel build test/* --no-cache --no-minify && karma start --single-run",
-    "p": "parcel index.html --no-cache"
+    "p": "parcel index.html --no-cache",
+    "docs:dev": "vuepress dev docs",
+    "docs:build": "vuepress build docs"
   },
   "alias": {
     "vue": "./node_modules/vue/dist/vue.common.js"
@@ -28,10 +30,11 @@
   "dependencies": {
     "chai-spies": "^1.0.0",
     "plugin": "^0.3.3",
-    "vue": "^2.5.21",
+    "vue": "^2.5.22",
     "vue-hot-reload-api": "^2.3.1"
   },
   "devDependencies": {
+    "@babel/core": "^7.2.2",
     "@vue/component-compiler-utils": "^2.3.1",
     "chai": "^4.2.0",
     "karma": "^3.1.4",
@@ -45,6 +48,8 @@
     "sass": "^1.15.2",
     "sinon": "^7.2.2",
     "sinon-chai": "^3.3.0",
-    "vue-template-compiler": "^2.5.21"
+    "vue-server-renderer": "^2.5.22",
+    "vue-template-compiler": "^2.5.22",
+    "vuepress": "^0.14.8"
   }
 }
