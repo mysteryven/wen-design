@@ -15,6 +15,12 @@ module.exports = {
                     '/get-started/',
                 ]
             },
+            {
+                title: '组件',
+                children: [
+                    '/button/',
+                ]
+            },
         ]
     }
 }
