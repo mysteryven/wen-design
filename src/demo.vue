@@ -1,15 +1,18 @@
 <template>
     <div id="app">
-        <z-button>hi</z-button>
+        <z-cascader>
+            <z-button>选择</z-button>
+        </z-cascader>
     </div>
 </template>
 
 <script>
+    import Cascader from './cascader'
     import Button from './button'
-
     export default {
         name: 'demo',
         components: {
+            'z-cascader': Cascader,
             'z-button': Button
         }
     }

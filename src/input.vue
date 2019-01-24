@@ -50,11 +50,8 @@
     }
 </script>
 <style lang="scss" scoped>
-    $height: 32px;
-    $border-color: #999;
-    $border-color-hover: #666;
-    $font-size: 14px;
-    $border-radius: 4px;
+    @import "var";
+
     .wrapper {
         display: inline-flex;
         align-items: center;
@@ -79,7 +76,7 @@
         font-size: $font-size;
         border: 1px solid $border-color;
         outline: none;border-radius: $border-radius;
-        padding: 1em 0.5em;
+        padding: 0em 0.5em;
         &[disabled] {
             cursor: not-allowed;
             &:hover {

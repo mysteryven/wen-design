@@ -41,16 +41,7 @@
 </script>
 
 <style lang="scss" scoped>
-    $button-height: 32px;
-    $font-size: 14px;
-    $button-bg: white;
-    $border-color: #999;
-    $button-active-bg: #eee;
-    $button-border-radius: 4px;
-    $color: #333;
-    $border-color-hover: #666;
-    $button-disable-bg: #d8d8d8;
-    $button-disable-color: #aaaaaa;
+    @import "var";
 
     @keyframes spin {
        0% {
