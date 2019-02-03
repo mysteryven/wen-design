@@ -1,11 +1,10 @@
 <template>
     <div id="app">
         <z-cascader :options="source">
-            <z-button>选择</z-button>
+            <div class="selected"></div>
         </z-cascader>
     </div>
 </template>
-
 <script>
     import Cascader from './cascader'
     import Button from './button'
@@ -22,25 +21,34 @@
                     {
                         name: '山东',
                         children: [
-                            {name: '莱芜'},
-                            {name: '济南'},
-                            {name: '潍坊'}
+                            {name: '莱芜', children: [{name: '莱芜区'}, {name: '莱城区'}]},
+                            {name: '济南', children: [{name: '历下区'}, {name: '历城区'}]},
+                            {name: '潍坊', children: [{name: '潍城区'}, {name: '寒亭区'}]}
                         ]
                     },
                     {
                         name: '福建',
                         children: [
-                            {name: '泉州'},
-                            {name: '厦门'},
-                            {name: '漳州'}]
+                            {
+                                name: '泉州', children: [{name: '鲤城区'}, {name: '丰泽区'},
+                                    {name: '洛江区'}, {name: '泉港区'}]
+                            },
+                            {
+                                name: '厦门', children: [
+                                    {name: '集美区'}, {name: '海沧区'}, {name: '湖里区'}]
+                            },
+                            {
+                                name: '漳州', children: [
+                                    {name: '芗城区'}, {name: '龙文区'}
+                                ]
+                            }
+                        ]
                     }
                 ]
             }
         }
     }
 </script>
-
-
 <style>
     #app {
         font-family: 'Avenir', Helvetica, Arial, sans-serif;
@@ -49,5 +57,10 @@
         text-align: center;
         color: #2c3e50;
         margin-top: 60px;
+    }
+    .selected {
+        border: 1px solid black;
+        min-width: 100px;
+        height: 20px;
     }
 </style>
