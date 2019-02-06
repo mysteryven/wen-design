@@ -1,7 +1,7 @@
 <template>
     <div id="app">
-        <z-cascader :options="source">
-            <div class="selected"></div>
+        <z-cascader :options="source" :selected.sync="selected">
+            <div class="selected">{{selectedString}}</div>
         </z-cascader>
     </div>
 </template>
@@ -15,8 +15,10 @@
             'z-cascader': Cascader,
             'z-button': Button
         },
+
         data() {
             return {
+                selected: [],
                 source: [
                     {
                         name: '山东',
@@ -46,6 +48,11 @@
                     }
                 ]
             }
+        },
+        computed: {
+            selectedString() {
+                return this.selected.map((item) => item.name).join('/')
+            }
         }
     }
 </script>
@@ -59,8 +66,8 @@
         margin-top: 60px;
     }
     .selected {
-        border: 1px solid black;
-        min-width: 100px;
-        height: 20px;
+        border: 1px solid #eee;
+        min-width: 200px;
+        height: 30px;
     }
 </style>

@@ -1,9 +1,10 @@
 <template>
     <div class="cascader-wrapper">
-        <div class="trigger">
+        <div class="trigger" @click="cascaderVisible = !cascaderVisible">
             <slot></slot>
         </div>
-        <cascader-items class="cascader-item" :sourceItem="options"></cascader-items>
+        <cascader-items class="cascader-item" :sourceItem="options"
+                        v-show="cascaderVisible" @update:selected="onUpdateSelected" :selected="selected"></cascader-items>
     </div>
 </template>
 <script>
@@ -15,13 +16,27 @@
             options: {
                 type: Array,
                 default: []
+            },
+            selected: {
+                type: Array,
+                default: () => []
             }
         },
         components: {
             'cascaderItems': CasCaderItems
         },
+        data() {
+            return {
+                cascaderVisible: false
+            }
+        },
         mounted() {
             console.log(this.options)
+        },
+        methods: {
+            onUpdateSelected(e) {
+                this.$emit('update:selected', e)
+            }
         }
 
     }
