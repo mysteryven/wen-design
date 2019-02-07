@@ -49,9 +49,9 @@
         },
         methods: {
             onClickLabel(item) {
-                console.log(JSON.stringify(item))
                 let copySelected = JSON.parse(JSON.stringify(this.selected))
                 copySelected[this.level] = item
+                copySelected.splice(this.level + 1)
                 this.$emit('update:selected', copySelected)
             },
             onUpdateSelected(e) {
