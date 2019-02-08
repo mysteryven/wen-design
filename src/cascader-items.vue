@@ -4,13 +4,15 @@
             <div class="left">
                 <div v-for="item in sourceItem" @click="onClickLabel(item)" class="name">
                     <span class="detail">{{item.name}}</span>
-                    <z-icon name="right" class="icon" v-if="!item.isLeaf"></z-icon>
+                    <z-icon name="right" class="icon" v-if="rightArrowVisible(item)"></z-icon>
                 </div>
             </div>
             <div class="right-item" v-if="rightItems">
                 <z-cascader-items :sourceItem="rightItems"
                                   :level="level + 1" @update:selected="onUpdateSelected"
-                                  :selected="selected"></z-cascader-items>
+                                  :selected="selected"
+                                  :loadData="loadData"
+                ></z-cascader-items>
             </div>
         </div>
     </div>
@@ -34,6 +36,9 @@
             level: {
                 type: Number,
                 default: 0
+            },
+            loadData: {
+                type: Function,
             }
         },
         data() {
@@ -65,7 +70,11 @@
             },
             onUpdateSelected(e) {
                 this.$emit('update:selected', e)
+            },
+            rightArrowVisible(item) {
+               return this.loadData ? !item.isLeaf : item.children
             }
+
         }
 
     }

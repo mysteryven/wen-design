@@ -1,9 +1,10 @@
 <template>
     <div id="app">
         <z-cascader :options="source" :selected.sync="selected"
-                    :loadData="loadData" :source.sync="source">
+                    :source.sync="source" :load-data="loadData">
             <div class="selected">{{selectedString}}</div>
         </z-cascader>
+        {{source}}
     </div>
 </template>
 <script>
@@ -38,7 +39,7 @@
         data() {
             return {
                 selected: [],
-                source: []
+                source: [ ]
             }
         },
         created() {

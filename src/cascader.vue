@@ -64,7 +64,10 @@
                     found.children = result
                     this.$emit('update:source', copy)
                 }
-                this.loadData(lastItem, updateSource)
+
+                if (!lastItem.isLeaf) {
+                    this.loadData && this.loadData(lastItem, updateSource)
+                }
             },
         }
 
