@@ -3,20 +3,26 @@
         <div class="cascader">
             <div class="left">
                 <div v-for="item in sourceItem" @click="onClickLabel(item)" class="name">
-                    {{item.name}}
+                    <span class="detail">{{item.name}}</span>
+                    <z-icon name="right" class="icon" v-if="!item.isLeaf"></z-icon>
                 </div>
             </div>
             <div class="right-item" v-if="rightItems">
-               <z-cascader-items :sourceItem="rightItems"
-                                 :level="level + 1" @update:selected="onUpdateSelected" :selected="selected"></z-cascader-items>
+                <z-cascader-items :sourceItem="rightItems"
+                                  :level="level + 1" @update:selected="onUpdateSelected"
+                                  :selected="selected"></z-cascader-items>
             </div>
         </div>
     </div>
 
 </template>
 <script>
+    import Icon from './icon'
     export default {
         name: 'ZCascaderItems',
+        components: {
+            'z-icon': Icon
+        },
         props: {
             sourceItem: {
                 type: Array,
@@ -40,10 +46,13 @@
         },
         computed: {
             rightItems() {
-                if (this.selected && this.selected[this.level] && this.selected[this.level].children) {
-                    return this.selected[this.level].children
-                } else {
-                    return null
+                if (this.selected[this.level]) {
+                    let selected = this.sourceItem.filter(item => {
+                        return item.name === this.selected[this.level].name
+                    })
+                    if (selected && selected[0].children && selected[0].children.length > 0) {
+                        return selected[0].children
+                    }
                 }
             }
         },
@@ -55,7 +64,7 @@
                 this.$emit('update:selected', copySelected)
             },
             onUpdateSelected(e) {
-               this.$emit('update:selected', e)
+                this.$emit('update:selected', e)
             }
         }
 
@@ -64,21 +73,37 @@
 <style lang="scss" scoped>
     @import "var";
 
-    .cascader{
+    .cascader {
         display: flex;
         justify-content: flex-start;
         align-items: flex-start;
         border-radius: $border-radius;
         background: white;
     }
+
     .cascader-wrapper .left {
-        padding: 0.1em 0.4em;
         margin-left: -1px;
-        height: 100px;
+        height: 160px;
+        overflow: auto;
         .name {
             white-space: nowrap;
+            display: flex;
+            align-items: center;
+            padding: 0.4em 1em;
+            cursor: pointer;
+            &:hover {
+                background-color: $blue-light;
+            }
+            .detail {
+                margin-right: 0.6em;
+            }
+            .icon {
+                margin-left: auto;
+            }
         }
+
     }
+
     .right-item {
         border-left: 1px solid $border-color-light;
     }

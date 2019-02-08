@@ -45,20 +45,16 @@
                 this.$emit('update:selected', e)
                 let lastItem = e[e.length-1]
 
-                let hasFound = false
                 let found = null
 
                 let findParent = function(id, array) {
                     for (let i = 0; i < array.length; i++) {
                         if (array[i].id === id) {
                             found = array[i]
-                            hasFound = true
                             break
-                        } else if(hasFound) {
-                           break
                         } else if(!array[i].children) {
                         } else {
-                            findParent(id, array[i])
+                            findParent(id, array[i].children)
                         }
                     }
                 }
@@ -67,7 +63,6 @@
                 let updateSource = (result) => {
                     found.children = result
                     this.$emit('update:source', copy)
-                    console.log(copy)
                 }
                 this.loadData(lastItem, updateSource)
             },
@@ -92,7 +87,6 @@
         position: absolute;
         top: 100%;
         left: 0;
-        overflow: auto;
     }
 
 </style>

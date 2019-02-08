@@ -17,6 +17,13 @@
                 let result = db.filter((item)=>{
                     return item.parent_id === parent_id
                 })
+                result.forEach(node => {
+                    if (db.filter(item => item.parent_id === node.id).length > 0) {
+                        node.isLeaf = false
+                    }else{
+                        node.isLeaf = true
+                    }
+                })
                 resolve(result)
             }, 1000)
         })
