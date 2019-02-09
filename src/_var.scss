@@ -12,3 +12,12 @@ $blue-light: #e6f7ff;
 $color: #333;
 $font-size: 14px;
 $height: 32px;
+
+@keyframes spin {
+  0% {
+    transform: rotate(0deg);
+  }
+  100% {
+    transform: rotate(360deg);
+  }
+}

@@ -5,7 +5,9 @@
         </div>
         <cascader-items class="cascader-item" :sourceItem="options"
                         v-show="cascaderVisible" @update:selected="onUpdateSelected"
-                        :selected="selected" :loadData="loadData"></cascader-items>
+                        :selected="selected" :load-data="loadData"
+                        :loading-item="loadingItem"
+        ></cascader-items>
     </div>
 </template>
 <script>
@@ -13,6 +15,11 @@
 
     export default {
         name: 'ZCascader',
+        data() {
+            return {
+                loadingItem: null
+            }
+        },
         props: {
             source: {
                 type: Array,
@@ -63,10 +70,12 @@
                 let updateSource = (result) => {
                     found.children = result
                     this.$emit('update:source', copy)
+                    this.loadingItem = null
                 }
 
-                if (!lastItem.isLeaf) {
-                    this.loadData && this.loadData(lastItem, updateSource)
+                if (!lastItem.isLeaf && this.loadData) {
+                    this.loadData(lastItem, updateSource)
+                    this.loadingItem = lastItem
                 }
             },
         }

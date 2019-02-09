@@ -4,7 +4,6 @@
                     :source.sync="source" :load-data="loadData">
             <div class="selected">{{selectedString}}</div>
         </z-cascader>
-        {{source}}
     </div>
 </template>
 <script>
