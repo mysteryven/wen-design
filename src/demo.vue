@@ -75,6 +75,8 @@
     .selected {
         border: 1px solid #eee;
         min-width: 200px;
-        height: 30px;
+        display: flex;
+        align-items: center;
+        padding: 0.4em 1em;
     }
 </style>

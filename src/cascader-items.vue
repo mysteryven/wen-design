@@ -49,7 +49,7 @@
                 type: Function,
             },
             loadingItem: {
-                type: Array
+                type: Object
             }
         },
         data() {

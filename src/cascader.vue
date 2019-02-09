@@ -17,7 +17,8 @@
         name: 'ZCascader',
         data() {
             return {
-                loadingItem: null
+                loadingItem: null,
+                cascaderVisible: false
             }
         },
         props: {
@@ -40,11 +41,7 @@
         components: {
             'cascaderItems': CasCaderItems
         },
-        data() {
-            return {
-                cascaderVisible: false
-            }
-        },
+
         mounted() {
         },
         methods: {
