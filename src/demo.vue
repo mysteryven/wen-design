@@ -2,7 +2,11 @@
     <div id="app">
         <z-cascader :options="source" :selected.sync="selected"
                     :source.sync="source" :load-data="loadData">
-            <div class="selected">{{selectedString}}</div>
+            <div class="selected">{{selectedString || '&nbsp;'}}</div>
+        </z-cascader>
+        <z-cascader :options="source" :selected.sync="selected"
+                    :source.sync="source" :load-data="loadData">
+            <div class="selected">{{selectedString || '&nbsp;'}}</div>
         </z-cascader>
     </div>
 </template>
@@ -48,6 +52,7 @@
         },
         computed: {
             selectedString() {
+
                 return this.selected.map((item) => item.name).join('/')
             }
         },

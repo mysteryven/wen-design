@@ -1,5 +1,5 @@
 <template>
-    <div class="cascader-wrapper">
+    <div class="cascader-wrapper" v-click-out-side="close">
         <div class="trigger" @click="cascaderVisible = !cascaderVisible">
             <slot></slot>
         </div>
@@ -12,6 +12,7 @@
 </template>
 <script>
     import CasCaderItems from './cascader-items'
+    import ClickOutSide from './click-outside'
 
     export default {
         name: 'ZCascader',
@@ -21,6 +22,7 @@
                 cascaderVisible: false
             }
         },
+        directives: {ClickOutSide},
         props: {
             source: {
                 type: Array,
@@ -45,6 +47,10 @@
         mounted() {
         },
         methods: {
+            close() {
+                this.cascaderVisible = false
+            },
+
             onUpdateSelected(e) {
                 this.$emit('update:selected', e)
                 let lastItem = e[e.length-1]
