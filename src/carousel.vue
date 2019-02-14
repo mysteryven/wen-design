@@ -1,6 +1,6 @@
 <template>
-    <div class="z-slides-window">
-        <div class="z-slides-wrapper">
+    <div class="z-carousel-window">
+        <div class="z-carousel-wrapper">
             <slot></slot>
         </div>
     </div>
@@ -8,22 +8,33 @@
 
 <script>
     export default {
-        name: "ZSlides",
+        name: "ZCarousel",
         props: {
             selected: {
                 type: String,
+            },
+            autoPlay: {
+                type: Boolean,
+                default: false
+            },
+            interval: {
+                type: Number,
+                default: 500
             }
         },
         mounted() {
             this.updateChildren()
-
         },
+
         updated() {
             this.updateChildren()
         },
         methods: {
+            playAutomatic() {
+
+            },
             getSlidesItem() {
-                return this.$children.filter(item => item.$options.name === 'ZSlidesItem')
+                return this.$children.filter(item => item.$options.name === 'ZCarouselItem')
             },
             updateChildren() {
                 let items = this.getSlidesItem()
@@ -36,11 +47,11 @@
 </script>
 
 <style scoped lang="scss">
-    .z-slides-window {
+    .z-carousel-window {
         width: 300px;
         overflow: hidden;
         border: 1px solid black;
-        .z-slides-wrapper {
+        .z-carousel-wrapper {
             display: flex;
             position: relative;
         }

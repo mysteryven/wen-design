@@ -1,6 +1,6 @@
 <template>
     <transition name="z-slide">
-        <div class="z-slides-item" v-show="itemVisible">
+        <div class="z-carousel-item" v-show="itemVisible">
             <slot></slot>
         </div>
     </transition>
@@ -9,7 +9,7 @@
 
 <script>
     export default {
-        name: "ZSlidesItem",
+        name: "ZCarouselItem",
         props: {
             name: {
                 type: String,
@@ -30,7 +30,7 @@
 </script>
 
 <style scoped lang="scss">
-    .z-slides-item {
+    .z-carousel-item {
         width: 100%;
         min-height: 160px;
         border: 1px solid red;

@@ -1,19 +1,19 @@
 <template>
     <div id="app">
-       <z-slides :selected="selected">
-           <z-slides-item name="1"> 1 </z-slides-item>
-           <z-slides-item name="2"> 2 </z-slides-item>
-           <z-slides-item name="3"> 3 </z-slides-item>
-       </z-slides>
+       <z-carousel :selected.sync="selected" autoPlay delay="600">
+           <z-carousel-item name="1"> 1 </z-carousel-item>
+           <z-carousel-item name="2"> 2 </z-carousel-item>
+           <z-carousel-item name="3"> 3 </z-carousel-item>
+       </z-carousel>
     </div>
 </template>
 <script>
-    import zSlides from './slides'
-    import zSlidesItem from './slides-item'
+    import zCarousel from './carousel'
+    import zCarouselItem from './carousel-item'
 
     export default {
         name: 'demo',
-        components: {zSlides, zSlidesItem},
+        components: {zCarousel, zCarouselItem},
         data() {
             return {
                 selected: '1'
