@@ -1,87 +1,34 @@
 <template>
     <div id="app">
-        <z-cascader :options="source" :selected.sync="selected"
-                    :source.sync="source" :load-data="loadData">
-            <div class="selected">{{selectedString || '&nbsp;'}}</div>
-        </z-cascader>
-        <z-cascader :options="source" :selected.sync="selected"
-                    :source.sync="source" :load-data="loadData">
-            <div class="selected">{{selectedString || '&nbsp;'}}</div>
-        </z-cascader>
+       <z-slides :selected="selected">
+           <z-slides-item name="1"> 1 </z-slides-item>
+           <z-slides-item name="2"> 2 </z-slides-item>
+           <z-slides-item name="3"> 3 </z-slides-item>
+       </z-slides>
     </div>
 </template>
 <script>
-    import Cascader from './cascader'
-    import Button from './button'
-    import db from './db.js'
-
-    function ajax(parent_id = 0) {
-        return new Promise((resolve, reject)=>{
-            setTimeout(()=>{
-                let result = db.filter((item)=>{
-                    return item.parent_id === parent_id
-                })
-                result.forEach(node => {
-                    if (db.filter(item => item.parent_id === node.id).length > 0) {
-                        node.isLeaf = false
-                    }else{
-                        node.isLeaf = true
-                    }
-                })
-                resolve(result)
-            }, 1000)
-        })
-    }
+    import zSlides from './slides'
+    import zSlidesItem from './slides-item'
 
     export default {
         name: 'demo',
-        components: {
-            'z-cascader': Cascader,
-            'z-button': Button
-        },
+        components: {zSlides, zSlidesItem},
         data() {
             return {
-                selected: [],
-                source: [ ]
+                selected: '1'
             }
         },
-        created() {
-            ajax(0).then(res => {
-                this.source = res
-            })
-        },
-        computed: {
-            selectedString() {
-
-                return this.selected.map((item) => item.name).join('/')
-            }
-        },
-        methods: {
-            loadData(node, updateSource) {
-                let {id} = node
-
-                ajax(id).then(res => {
-                    updateSource(res)
-                })
-            }
+        mounted() {
+            setTimeout(()=> {
+                this.selected = '2'
+            }, 3000)
         }
 
     }
 </script>
 <style>
     #app {
-        font-family: 'Avenir', Helvetica, Arial, sans-serif;
-        -webkit-font-smoothing: antialiased;
-        -moz-osx-font-smoothing: grayscale;
-        text-align: center;
-        color: #2c3e50;
-        margin-top: 60px;
-    }
-    .selected {
-        border: 1px solid #eee;
-        min-width: 200px;
-        display: flex;
-        align-items: center;
-        padding: 0.4em 1em;
+        margin: 100px;
     }
 </style>
