@@ -1,6 +1,6 @@
 <template>
 
-    <svg class="z-icon" aria-hidden="true">
+    <svg class="z-icon" aria-hidden="true" @click="$emit('click')">
         <use :xlink:href="`#icon-${name}`"></use>
     </svg>
 </template>
