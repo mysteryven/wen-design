@@ -35,9 +35,9 @@
     @import 'var';
 
     .z-carousel-item {
-        width: 100%;
-        min-height: 120px;
         background-color: #364d79;
+        width: 100%;
+        height: 100%;
     }
 
     .z-slide-leave-active {

@@ -155,12 +155,17 @@
     @import "var";
 
     .z-carousel {
-        width: 300px;
         position: relative;
+        width: 100%;
+        height: 100%;
         &-window {
+            width: 100%;
+            height: 100%;
             overflow: hidden;
             border: 1px solid black;
             .z-carousel-wrapper {
+                width: 100%;
+                height: 100%;
                 display: flex;
                 position: relative;
             }
