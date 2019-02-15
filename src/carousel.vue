@@ -83,14 +83,13 @@
             onTouchStart(e) {
                 this.startX = e.touches[0].clientX
                 this.startY = e.touches[0].clientY
+                console.log('fresh')
                 this.pause()
             },
             onTouchEnd(e) {
                 let endX = e.changedTouches[0].clientX
-                let endY = e.changedTouches[0].clientX
-                console.log(Math.abs(endY-this.startY) / Math.abs(endX - this.startX) )
-                if (Math.abs(endY-this.startY) / Math.abs(endX - this.startX) > Math.PI / 3) {
-                    console.log('yes')
+                let endY = e.changedTouches[0].clientY
+                if (Math.abs(endY-this.startY) / Math.abs(endX - this.startX) > 1 / 2) {
                     return
                 }
                 if (this.startX > endX) {
