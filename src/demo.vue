@@ -1,6 +1,6 @@
 <template>
     <div id="app">
-       <z-carousel class="slides" :selected.sync="selected" autoPlay arrowVisible>
+       <z-carousel class="slides" :selected.sync="selected" autoPlay :interval="5000" arrowVisible>
            <z-carousel-item class="item" name="1"> 1 </z-carousel-item>
            <z-carousel-item class="item" name="2"> 2 </z-carousel-item>
            <z-carousel-item class="item" name="3"> 3 </z-carousel-item>
@@ -29,14 +29,14 @@
     #app {
         .slides {
             width: 360px;
-            height: 500px;
+            height: 300px;
         }
         .item {
             display: flex;;
             justify-content: center;
             align-items: center;
             font-size: 30px;
-            border: 1px solid green;
+            border: 1px solid yellow;
         }
     }
 </style>

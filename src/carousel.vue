@@ -1,5 +1,10 @@
 <template>
-    <div class="z-carousel" @mouseenter="onMouseEnter" @mouseleave="onMouseLeave">
+    <div class="z-carousel"
+         @mouseenter="onMouseEnter"
+         @mouseleave="onMouseLeave"
+         @touchstart="onTouchStart"
+         @touchend="onTouchEnd"
+        >
         <div class="z-carousel-window">
             <div class="z-carousel-wrapper">
                 <slot></slot>
@@ -28,7 +33,9 @@
         data() {
             return {
                 childrenLength: 0,
-                timerId: undefined
+                timerId: undefined,
+                startX: undefined,
+                startY: undefined
             }
         },
         props: {
@@ -72,6 +79,25 @@
             },
             prev() {
                 this.updateSelected(this.selectedIndex - 1, {open: true, value: true})
+            },
+            onTouchStart(e) {
+                this.startX = e.touches[0].clientX
+                this.startY = e.touches[0].clientY
+                this.pause()
+            },
+            onTouchEnd(e) {
+                let endX = e.changedTouches[0].clientX
+                let endY = e.changedTouches[0].clientX
+                console.log(Math.abs(endY-this.startY) / Math.abs(endX - this.startX) )
+                if (Math.abs(endY-this.startY) / Math.abs(endX - this.startX) > Math.PI / 3) {
+                    console.log('yes')
+                    return
+                }
+                if (this.startX > endX) {
+                    this.next()
+                } else {
+                    this.prev()
+                }
             },
             onMouseEnter() {
                 this.pause()
@@ -198,8 +224,8 @@
         }
         .icon {
             fill: $button-bg-hover;
-            width: 12px;
-            height: 12px;
+            width: 16px;
+            height: 16px;
             cursor: pointer;
             align-self: center;
             position: absolute;
