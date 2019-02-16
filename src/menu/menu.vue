@@ -11,5 +11,9 @@
 </script>
 
 <style scoped lang="scss">
-
+    @import 'var';
+    .z-menu {
+        display: flex;
+        font-size: $font-size;
+    }
 </style>
