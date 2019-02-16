@@ -1,7 +1,7 @@
 <template>
     <div class="z-sub-menu" @mouseenter="onMouseEnter"
          @mouseleave="onMouseLeave">
-        <div class="z-sub-menu-title">
+        <div class="z-sub-menu-title" :class="{active}">
             <slot name="title"></slot>
             <z-icon class="icon" name="right"></z-icon>
         </div>
@@ -10,7 +10,6 @@
                 <slot></slot>
             </div>
         </div>
-
     </div>
 </template>
 
@@ -20,10 +19,11 @@
     export default {
         name: "ZSubMenu",
         components: {ZIcon},
+        inject: ['root'],
         data() {
             return {
                 visible: false,
-                mouseEnable: false
+                mouseEnable: false,
             }
         },
         props: {
@@ -35,18 +35,24 @@
             onMouseEnter() {
                 this.mouseEnable = true
                 this.visible = true
-                console.log('enter' + this.name)
             },
             onMouseLeave() {
                 this.visible = false
-                console.log('leave' + this.name)
             },
             onClick() {
                 if (this.mouseEnable) {
                     return
                 }
                 this.visible = !this.visible
-                console.log(this.visible)
+            },
+            updateSelectedPath() {
+                this.root.selectedPath.unshift(this.name)
+                this.$parent.updateSelectedPath && this.$parent.updateSelectedPath()
+            }
+        },
+        computed: {
+            active() {
+               return this.root.selectedPath.indexOf(this.name) !== -1
             }
         }
     }
@@ -61,6 +67,13 @@
             padding: 8px 12px;
             display: inline-flex;
             white-space: nowrap;
+            color: $text-color;
+            &.active {
+                color: $text-hover-color;
+                .icon {
+                    fill: $text-hover-color;
+                }
+            }
             &:hover {
                 color: $text-hover-color;
                 .icon {
@@ -97,10 +110,9 @@
     .z-menu > .z-sub-menu > .z-sub-menu-transparent-bg {
         top: 100%;
         left: 0;
-
     }
 
-    .z-menu > .z-sub-menu >  .z-sub-menu-title .icon {
+    .z-menu > .z-sub-menu > .z-sub-menu-title .icon {
         margin-left: 1em;
         transform: rotate(90deg);
     }
