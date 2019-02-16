@@ -91,7 +91,7 @@
     }
 </script>
 <style lang="scss" scoped>
-    @import "../../styles/var";
+    @import "var";
 
     .cascader {
         display: flex;

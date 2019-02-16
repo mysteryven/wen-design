@@ -16,7 +16,7 @@
     }
 </script>
 <style lang="scss" scoped>
-    @import "../../styles/var";
+    @import "var";
     .z-button-group {
         display: inline-flex;
         vertical-align: middle;

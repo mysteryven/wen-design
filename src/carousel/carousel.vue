@@ -177,7 +177,7 @@
 </script>
 
 <style scoped lang="scss">
-    @import "../../styles/var";
+    @import "var";
 
     .z-carousel {
         position: relative;
