@@ -32,7 +32,7 @@
 </script>
 
 <style scoped lang="scss">
-    @import 'var';
+    @import '../../styles/var';
 
     .z-carousel-item {
         background-color: #364d79;

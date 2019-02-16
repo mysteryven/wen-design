@@ -8,8 +8,8 @@
     </div>
 </template>
 <script>
-    import zCarousel from './carousel'
-    import zCarouselItem from './carousel-item'
+    import zCarousel from './carousel/carousel'
+    import zCarouselItem from './carousel/carousel-item'
 
     export default {
         name: 'demo',

@@ -12,7 +12,7 @@
 </template>
 <script>
     import CasCaderItems from './cascader-items'
-    import ClickOutSide from './click-outside'
+    import ClickOutSide from '../click-outside'
 
     export default {
         name: 'ZCascader',

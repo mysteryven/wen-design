@@ -25,7 +25,7 @@
 </template>
 
 <script>
-    import ZIcon from './icon'
+    import ZIcon from '../icon'
 
     export default {
         name: "ZCarousel",
@@ -177,7 +177,7 @@
 </script>
 
 <style scoped lang="scss">
-    @import "var";
+    @import "../../styles/var";
 
     .z-carousel {
         position: relative;
