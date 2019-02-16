@@ -1,6 +1,6 @@
 import { expect } from 'chai'
 import { shallowMount, mount } from '@vue/test-utils'
-import Button from '@/button.vue'
+import Button from '@/button/button.vue'
 import sinon from 'sinon'
 
 describe('Button', () => {
