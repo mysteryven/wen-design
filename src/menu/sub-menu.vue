@@ -6,7 +6,7 @@
 
         <div class="z-sub-menu-title" :class="{active}" @click="onClick">
             <slot name="title"></slot>
-            <z-icon class="icon" name="right"></z-icon>
+            <z-icon class="icon" name="right" :class="{open: visible}"></z-icon>
         </div>
         <div class="z-sub-menu-transparent-bg">
             <div class="z-sub-menu-content" v-show="visible">
@@ -109,7 +109,11 @@
                 margin-left: 2em;
                 width: 0.8em;
                 height: 0.8em;
-                fill: $text-color
+                fill: $text-color;
+                transition: transform 0.4s;
+            }
+            .icon.open {
+                transform: rotate(180deg);
             }
         }
         &-transparent-bg {
@@ -139,6 +143,9 @@
     .z-menu > .z-sub-menu > .z-sub-menu-title .icon {
         margin-left: 1em;
         transform: rotate(90deg);
+        &.open {
+            transform: rotate(270deg);
+        }
     }
 
 
@@ -159,6 +166,12 @@
             border-radius: 0px;
             margin-left: 8px;
             border: none;
+        }
+        .icon {
+            transform: rotate(90deg);
+        }
+        .icon.open {
+            transform: rotate(270deg);
         }
     }
 
