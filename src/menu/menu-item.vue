@@ -51,8 +51,12 @@
         display: inline-flex;
         white-space: nowrap;
         color: $text-color;
+        cursor: pointer;
+        user-select: none;
         &:hover {
             color: $text-hover-color;
+            background-color: $button-bg-hover-light ;
+
         }
         &.active {
             color: $text-hover-color;

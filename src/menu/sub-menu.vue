@@ -2,17 +2,30 @@
     <div class="z-sub-menu" :class="{'z-sub-menu-vertical': vertical}"
          @mouseenter="onMouseEnter"
          @mouseleave="onMouseLeave"
-         >
+    >
 
         <div class="z-sub-menu-title" :class="{active}" @click="onClick">
             <slot name="title"></slot>
             <z-icon class="icon" name="right" :class="{open: visible}"></z-icon>
         </div>
-        <div class="z-sub-menu-transparent-bg">
-            <div class="z-sub-menu-content" v-show="visible">
-                <slot></slot>
+        <template v-if="vertical">
+            <transition @enter="enter" @leave="leave"  @after-leave="afterLeave"
+                        @after-enter="afterEnter">
+                <div class="z-sub-menu-transparent-bg" v-show="visible">
+                    <div class="z-sub-menu-content">
+                        <slot></slot>
+                    </div>
+                </div>
+            </transition>
+        </template>
+        <template v-else>
+            <div class="z-sub-menu-transparent-bg" v-show="visible">
+                <div class="z-sub-menu-content" >
+                    <slot></slot>
+                </div>
             </div>
-        </div>
+        </template>
+
     </div>
 </template>
 
@@ -41,8 +54,31 @@
 
         },
         methods: {
+            enter(el, done) {
+                let {height} = el.getBoundingClientRect()
+                el.style.height = 0
+                el.getBoundingClientRect()
+                el.style.height = `${height}px`
+                el.addEventListener('transitionend', () => {
+                    done()
+                })
+            },
+            afterEnter (el) {
+                el.style.height = 'auto'
+            },
+            leave: function (el, done) {
+                let {height} = el.getBoundingClientRect()
+                el.style.height = `${height}px`
+                el.getBoundingClientRect()
+                el.style.height = 0
+                el.addEventListener('transitionend', () => {
+                    done()
+                })
+            },
+            afterLeave: function (el) {
+                el.style.height = 'auto'
+            },
             onMouseEnter() {
-                console.log(this.vertical)
                 if (!this.vertical) {
                     this.mouseEnable = true
                     this.visible = true
@@ -50,13 +86,11 @@
 
             },
             onMouseLeave() {
-                if(!this.vertical) {
+                if (!this.vertical) {
                     this.visible = false
                 }
             },
             onClick() {
-                console.log(this.vertical)
-                console.log('click')
                 if (this.vertical) {
                     this.visible = !this.visible
                 } else if (this.mouseEnable) {
@@ -74,7 +108,7 @@
         },
         computed: {
             active() {
-               return this.root.selectedPath.indexOf(this.name) !== -1
+                return this.root.selectedPath.indexOf(this.name) !== -1
             },
 
         }
@@ -90,6 +124,8 @@
             padding: 8px 12px;
             display: inline-flex;
             white-space: nowrap;
+            cursor: pointer;
+            user-select: none;
             color: $text-color;
             &.active {
                 color: $text-hover-color;
@@ -98,6 +134,7 @@
                 }
             }
             &:hover {
+                background-color: $button-bg-hover-light ;
                 color: $text-hover-color;
                 .icon {
                     fill: $text-hover-color;
@@ -148,16 +185,13 @@
         }
     }
 
-
-
-
     .z-sub-menu.z-sub-menu-vertical {
         .z-sub-menu-transparent-bg {
-            position: relative;
-            left: 0;
-            top: 0;
+            position: static;
             padding-right: 10px;
             z-index: 1;
+            overflow: hidden;
+            transition: height 250ms;
         }
         .z-sub-menu-content {
             background: white;
@@ -174,7 +208,6 @@
             transform: rotate(270deg);
         }
     }
-
 
 
 </style>

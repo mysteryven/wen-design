@@ -62,7 +62,6 @@
         font-size: $font-size;
         &.z-menu-vertical {
             display: inline-flex;
-            border: 1px solid red;
             flex-direction: column;
         }
     }
