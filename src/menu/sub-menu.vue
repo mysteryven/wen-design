@@ -1,7 +1,10 @@
 <template>
-    <div class="z-sub-menu" @mouseenter="onMouseEnter"
-         @mouseleave="onMouseLeave">
-        <div class="z-sub-menu-title" :class="{active}">
+    <div class="z-sub-menu" :class="{'z-sub-menu-vertical': vertical}"
+         @mouseenter="onMouseEnter"
+         @mouseleave="onMouseLeave"
+         >
+
+        <div class="z-sub-menu-title" :class="{active}" @click="onClick">
             <slot name="title"></slot>
             <z-icon class="icon" name="right"></z-icon>
         </div>
@@ -24,6 +27,7 @@
             return {
                 visible: false,
                 mouseEnable: false,
+                vertical: false
             }
         },
         props: {
@@ -31,19 +35,37 @@
                 type: String,
             }
         },
+        mounted() {
+
+            this.vertical = this.root.vertical
+
+        },
         methods: {
             onMouseEnter() {
-                this.mouseEnable = true
-                this.visible = true
+                console.log(this.vertical)
+                if (!this.vertical) {
+                    this.mouseEnable = true
+                    this.visible = true
+                }
+
             },
             onMouseLeave() {
-                this.visible = false
+                if(!this.vertical) {
+                    this.visible = false
+                }
             },
             onClick() {
-                if (this.mouseEnable) {
+                console.log(this.vertical)
+                console.log('click')
+                if (this.vertical) {
+                    this.visible = !this.visible
+                } else if (this.mouseEnable) {
                     return
+                } else {
+                    this.visible = !this.visible
                 }
-                this.visible = !this.visible
+
+
             },
             updateSelectedPath() {
                 this.root.selectedPath.unshift(this.name)
@@ -53,7 +75,8 @@
         computed: {
             active() {
                return this.root.selectedPath.indexOf(this.name) !== -1
-            }
+            },
+
         }
     }
 </script>
@@ -95,6 +118,7 @@
             left: 100%;
             padding-right: 10px;
             background-color: transparent;
+            z-index: 1;
         }
         &-content {
             display: flex;
@@ -116,5 +140,28 @@
         margin-left: 1em;
         transform: rotate(90deg);
     }
+
+
+
+
+    .z-sub-menu.z-sub-menu-vertical {
+        .z-sub-menu-transparent-bg {
+            position: relative;
+            left: 0;
+            top: 0;
+            padding-right: 10px;
+            z-index: 1;
+        }
+        .z-sub-menu-content {
+            background: white;
+            color: $text-color;
+            box-shadow: none;
+            border-radius: 0px;
+            margin-left: 8px;
+            border: none;
+        }
+    }
+
+
 
 </style>

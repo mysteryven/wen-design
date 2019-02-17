@@ -1,5 +1,5 @@
 <template>
-    <div class="z-menu">
+    <div class="z-menu" :class="{'z-menu-vertical': vertical}">
         <slot></slot>
     </div>
 </template>
@@ -16,6 +16,10 @@
         props: {
             selected: {
                 type: String
+            },
+            vertical: {
+                type: Boolean,
+                default: false
             }
         },
         provide() {
@@ -27,6 +31,7 @@
         },
         mounted() {
             this.listenToChildren()
+
         },
         updated() {
             this.listenToChildren()
@@ -55,5 +60,8 @@
     .z-menu {
         display: flex;
         font-size: $font-size;
+        &.z-menu-vertical {
+            flex-direction: column;
+        }
     }
 </style>

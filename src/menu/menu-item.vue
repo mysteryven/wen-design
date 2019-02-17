@@ -1,5 +1,5 @@
 <template>
-    <div class="z-menu-item" @click="updateSelected" :class="{active: x}">
+    <div class="z-menu-item" @click="onClick" :class="{active}">
         <slot></slot>
     </div>
 </template>
@@ -16,19 +16,30 @@
             }
         },
         computed: {
-           x() {
+           active() {
                return this.root.selectedItem === this.name
            }
         },
         methods: {
-            updateSelected() {
+            onClick() {
                 this.$emit('click')
+                this.updateSelected()
+            },
+            updateSelected() {
                 this.root.selectedPath = []
                 this.$parent.updateSelectedPath && this.$parent.updateSelectedPath()
                 this.root.selectedPath.push(this.name)
                 this.root.updateSelected(this.name)
             }
         },
+        watch: {
+            active(newValue) {
+                if (newValue) {
+                    this.updateSelected()
+                }
+
+            }
+        }
     }
 </script>
 
