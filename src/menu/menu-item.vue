@@ -1,5 +1,5 @@
 <template>
-    <div class="z-menu-item" @click="updateSelected" :class="{active: selected}">
+    <div class="z-menu-item" @click="updateSelected" :class="{active: x}">
         <slot></slot>
     </div>
 </template>
@@ -8,16 +8,17 @@
     export default {
         name: "ZMenuItem",
         inject: ['root'],
-        data() {
-            return {
-                selected: false
-            }
-        },
+
         props: {
             name: {
                 type: String,
                 required: true
             }
+        },
+        computed: {
+           x() {
+               return this.root.selectedItem === this.name
+           }
         },
         methods: {
             updateSelected() {

@@ -1,7 +1,6 @@
 <template>
     <div class="z-menu">
         <slot></slot>
-        {{selectedPath}}
     </div>
 </template>
 
@@ -10,7 +9,8 @@
         name: "zMenu",
         data() {
             return {
-                selectedPath: []
+                selectedPath: [],
+                selectedItem: ''
             }
         },
         props: {
@@ -23,6 +23,8 @@
                 root: this
             }
         },
+        computed: {
+        },
         mounted() {
             this.listenToChildren()
         },
@@ -31,19 +33,17 @@
         },
         methods: {
             listenToChildren() {
+                this.selectedItem = this.selected
                 this.$children.forEach(vm => {
-                    console.log(vm.name)
                     if (vm.name === this.selected) {
                         vm.selected = true
                     } else {
                         vm.selected = false
                     }
-                    console.log(vm.selected)
                 })
             },
             updateSelected(name) {
                 this.$emit('update:selected', name)
-                console.log(name)
             }
         }
     }

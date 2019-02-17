@@ -1,42 +1,53 @@
 <template>
     <div id="app">
-       <z-carousel class="slides" :selected.sync="selected" autoPlay :interval="5000" arrowVisible>
-           <z-carousel-item class="item" name="1"> 1 </z-carousel-item>
-           <z-carousel-item class="item" name="2"> 2 </z-carousel-item>
-           <z-carousel-item class="item" name="3"> 3 </z-carousel-item>
-       </z-carousel>
+        {{selected}}
+        <z-menu :selected.sync="selected">
+            <z-menu-item name="draw" >绘画</z-menu-item>
+            <z-menu-item name="opera">歌剧</z-menu-item>
+            <z-sub-menu name="sub1">
+                <template slot="title">
+                    音乐
+                </template>
+                <z-sub-menu name="sub2">
+                   <template slot="title">古典音乐</template>
+                    <z-menu-item name="baLuoKe">巴洛克主义</z-menu-item>
+                    <z-sub-menu name="sub3">
+                        <template slot="title">
+                          浪漫主义
+                        </template>
+                        <z-menu-item name="liSiTe">李斯特</z-menu-item>
+                        <z-menu-item name="brams">勃拉姆斯</z-menu-item>
+                    </z-sub-menu>
+                    <z-menu-item name="classic">古典主义</z-menu-item>
+                </z-sub-menu>
+                <z-menu-item name="rock">摇滚</z-menu-item>
+                <z-menu-item name="rb">R&B</z-menu-item>
+            </z-sub-menu>
+        </z-menu>
     </div>
 </template>
 <script>
-    import zCarousel from './carousel/carousel'
-    import zCarouselItem from './carousel/carousel-item'
+    import zMenu from './menu/menu'
+    import zMenuItem from './menu/menu-item'
+    import zSubMenu from './menu/sub-menu'
 
     export default {
         name: 'demo',
-        components: {zCarousel, zCarouselItem},
+        components: {zMenu, zMenuItem, zSubMenu},
         data() {
             return {
-                selected: '1'
+                selected: 'draw'
             }
         },
         mounted() {
+
+        },
+        methods: {
 
         }
 
     }
 </script>
 <style lang="scss">
-    #app {
-        .slides {
-            width: 360px;
-            height: 300px;
-        }
-        .item {
-            display: flex;;
-            justify-content: center;
-            align-items: center;
-            font-size: 30px;
-            border: 1px solid yellow;
-        }
-    }
+
 </style>
