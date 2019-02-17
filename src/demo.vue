@@ -1,5 +1,5 @@
 <template>
-    <div id="app">
+    <div id="app" class="active">
         <z-menu :selected.sync="selected">
             <z-menu-item name="draw" >绘画</z-menu-item>
             <z-menu-item name="opera">歌剧</z-menu-item>
