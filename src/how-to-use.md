@@ -15,4 +15,28 @@
    <z-carousel-item class="item" name="2"> 2 </z-carousel-item>
    <z-carousel-item class="item" name="3"> 3 </z-carousel-item>
 </z-carousel>
+
+<z-menu :selected.sync="selected">
+            <z-menu-item name="draw" >绘画</z-menu-item>
+            <z-menu-item name="opera">歌剧</z-menu-item>
+            <z-sub-menu name="sub1">
+                <template slot="title">
+                    音乐
+                </template>
+                <z-sub-menu name="sub2">
+                   <template slot="title">古典音乐</template>
+                    <z-menu-item name="baLuoKe">巴洛克主义</z-menu-item>
+                    <z-sub-menu name="sub3">
+                        <template slot="title">
+                          浪漫主义
+                        </template>
+                        <z-menu-item name="liSiTe">李斯特</z-menu-item>
+                        <z-menu-item name="brams">勃拉姆斯</z-menu-item>
+                    </z-sub-menu>
+                    <z-menu-item name="classic">古典主义</z-menu-item>
+                </z-sub-menu>
+                <z-menu-item name="rock">摇滚</z-menu-item>
+                <z-menu-item name="rb">R&B</z-menu-item>
+            </z-sub-menu>
+        </z-menu>
 ```
