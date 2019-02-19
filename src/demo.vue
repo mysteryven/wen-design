@@ -1,7 +1,10 @@
 <template>
     <div id="app">
         <z-table :columns="columns" :data-source="dataSource" striped bordered :selected-items.sync="selected"
-        :sort-directions.sync="sortDirections" :height="200">
+        :sort-directions.sync="sortDirections" :height="200" :operate-width="50" :action="action" >
+            <template slot-scope="source">
+                <button @click="edit(source)">编辑</button>
+            </template>
         </z-table>
     </div>
 </template>
@@ -16,7 +19,7 @@
                 columns: [
                     {name: '姓名', field: 'name', width: 50},
                     {name: '年龄', field: 'age', width: 80},
-                    {name: '住址', field: 'address'}
+                    {name: '住址', field: 'address', width: 80}
                 ],
                 dataSource: [
                     {id: 1, name: '周杰伦', age: 40, address: '台北'},
@@ -31,12 +34,20 @@
                 sortDirections: {
                     name: 'asc',
                     address: true
+                },
+                action: {
+                    name: '操作',
+                    width: '30'
                 }
+
             }
         },
         mounted() {
         },
         methods: {
+            edit(xxx) {
+                console.log(xxx)
+            }
         },
     }
 </script>

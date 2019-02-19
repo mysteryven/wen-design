@@ -19,22 +19,37 @@
                                         :class="{active: sortDirections[column.field] ==='desc'}"></z-icon>
                             </div>
                         </div>
-
                     </th>
+                    <template v-if="action">
+                       <th  ref="actionHeader" :style="{width: action.width + 'px'}">{{action.name}}</th>
+                    </template>
                 </tr>
                 </thead>
                 <tbody>
                 <tr v-for="source in dataSource" :key="source.id">
-                    <td class="z-table-input-td" v-if="selectedItems" >
+                    <td class="z-table-input-td" v-if="selectedItems" style="">
                         <div class="z-table-input-wrapper" :class="{checked: isChecked(source.id)}"
                              @click="onClickCheckBox(source)">
                         </div>
                     </td>
+                    <td v-for="column in columns" v-if="column.field" :key="column.field"
+                        :style="{width: column.width+ 'px'}">
+                        {{source[column.field]}}
+                    </td>
+                    <template v-if="action">
+                        <td class="random-operate}" :style="{width: action.width + 'px'}">
+                            <div ref="action" style="display: inline-block">
+                                <slot :source="source"></slot>
+                            </div>
+                        </td>
+                    </template>
 
-                    <td v-for="column in columns" :key="column.field" :style="{width: column.width+ 'px'}">{{source[column.field]}}</td>
                 </tr>
                 </tbody>
             </table>
+        </div>
+        <div v-if="loading" class="z-table-loading">
+            <z-icon name="loading"></z-icon>
         </div>
     </div>
 </template>
@@ -76,19 +91,20 @@
             },
             height: {
                 type: Number
+            },
+            action: {
+                type: Object
+            },
+            loading: {
+                type: Boolean,
+                default: false
             }
+
         },
         mounted() {
-            let tableCopy = this.$refs.table.cloneNode(false)
-
-            let tableHeader = this.$refs.table.children[0]
-            tableCopy.appendChild(tableHeader)
-            tableCopy.classList.add('z-table-copy')
-            this.$refs.tableWrapper.append(tableCopy)
-            let {height} = tableHeader.getBoundingClientRect()
-
-            this.$refs.tableWrapper.style.height = this.height - parseInt(height) + 'px'
-            this.$refs.wrapper.style.paddingTop = height + 'px'
+            if (this.height) {
+                this.fixedHeader()
+            }
         },
         computed: {
             selectAll() {
@@ -104,6 +120,20 @@
             }
         },
         methods: {
+            fixedHeader() {
+                let tableCopy = this.$refs.table.cloneNode(false)
+
+                let tableHeader = this.$refs.table.children[0]
+                tableCopy.appendChild(tableHeader)
+                tableCopy.classList.add('z-table-copy')
+                this.$refs.tableWrapper.append(tableCopy)
+
+                let {height} = tableHeader.getBoundingClientRect()
+
+                this.$refs.tableWrapper.style.height = this.height - parseInt(height) + 'px'
+                this.$refs.wrapper.style.paddingTop = height + 'px'
+            },
+
             isChecked(id) {
                 return this.selectedItems.filter(item => item.id === id).length !== 0
             },
@@ -289,6 +319,26 @@
             position: absolute;
             top: 0;
             left: 0;
+        }
+        .z-table-loading {
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            z-index: 1;
+            background: rgba(255, 255, 255, 0.7);
+            top: 0;
+            left: 0;
+            margin-left: -20px;
+            svg {
+                position: absolute;
+                left: 50%;
+                top: 50%;
+                margin-left: -20px;
+                margin-top: -20px;
+                width: 40px;
+                height: 40px;
+                animation: spin 1.4s linear infinite;
+            }
         }
     }
 </style>
