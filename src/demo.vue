@@ -1,7 +1,7 @@
 <template>
     <div id="app">
         <z-table :columns="columns" :data-source="dataSource" striped  :selected-items.sync="selected"
-        :selections.sync="selections">
+        :sort-directions.sync="sortDirections">
         </z-table>
     </div>
 </template>
@@ -28,19 +28,16 @@
                     {id: 7, name: '勃拉姆斯', age: 40, address: '国外'},
                 ],
                 selected: [],
-                selections: {
+                sortDirections: {
                     name: 'asc',
-                    age: 'desc',
                     address: true
                 }
             }
         },
         mounted() {
-
         },
         methods: {
-
-        }
+        },
 
     }
 </script>

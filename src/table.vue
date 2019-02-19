@@ -10,11 +10,11 @@
                 <th v-for="column in columns" :key="column.field">
                     <div class="z-table-field-wrapper">
                         <div>{{column.name}}</div>
-                        <div class="icon-group" @click="changeSortRule(column.field)">
+                        <div class="icon-group" @click="changeSortRule(column.field)" v-if="sortDirections[column.field]">
                             <z-icon name="up-solid"
-                                    :class="{active: selections[column.field] && selections[column.field] ==='asc'}"></z-icon>
+                                    :class="{active: sortDirections[column.field] ==='asc'}"></z-icon>
                             <z-icon name="down-solid"
-                                    :class="{active: selections[column.field] && selections[column.field] ==='desc'}"></z-icon>
+                                    :class="{active: sortDirections[column.field] ==='desc'}"></z-icon>
                         </div>
                     </div>
 
@@ -67,7 +67,7 @@
             selectedItems: {
                 type: Array
             },
-            selections: {
+            sortDirections: {
                 type: Object
             }
         },
@@ -106,9 +106,7 @@
                 }
             },
             changeSortRule(field) {
-                console.log(field)
-                let copy = JSON.parse(JSON.stringify(this.selections))
-                console.log(copy[field])
+                let copy = JSON.parse(JSON.stringify(this.sortDirections))
                 if (copy[field] === 'asc') {
                     copy[field] = 'desc'
                 } else if (copy[field] === 'desc'){
@@ -116,7 +114,7 @@
                 } else if (copy[field] === true){
                     copy[field] = 'asc'
                 }
-                this.$emit('update:selections', copy)
+                this.$emit('update:sortDirections', copy)
             }
 
 
@@ -172,7 +170,7 @@
                     flex-direction: column;
                     margin-left: 2px;
                     > svg {
-                        fill: $grey;
+                        fill: $grey-light;
                         width: 0.6em;
                         height: 0.6em;
                         &.active {
