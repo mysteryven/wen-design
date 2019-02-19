@@ -1,6 +1,6 @@
 <template>
     <div id="app">
-        <z-pager :total="20" :current.sync="current"></z-pager>
+        <z-pager :total="4" :current.sync="current"></z-pager>
     </div>
 </template>
 <script>

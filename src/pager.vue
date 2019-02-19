@@ -37,10 +37,16 @@
         },
         computed: {
             pages() {
-                let pages = [1, this.total,
+                let tempPages = [1, this.total,
                     this.current, this.current - 1,
                     this.current - 2, this.current + 1, this.current + 2]
-                    .sort((a, b) => a - b).filter(item => item > 0 && item <= this.total)
+                if (this.current === 1)
+                    tempPages = [1, 2, 3, 4, this.total]
+
+                let pages = tempPages.sort((a, b) => a - b).filter(item => item > 0 && item <= this.total)
+
+
+
 
                 return pages.reduce((prev, current, index, array) => {
                     if (index > 0 && current === array[index - 1]) {
