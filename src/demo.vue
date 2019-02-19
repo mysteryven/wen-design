@@ -1,6 +1,7 @@
 <template>
     <div id="app">
-        <z-table :columns="columns" :data-source="dataSource" striped  :selected-items.sync="selected">
+        <z-table :columns="columns" :data-source="dataSource" striped  :selected-items.sync="selected"
+        :selections.sync="selections">
         </z-table>
     </div>
 </template>
@@ -26,7 +27,12 @@
                     {id: 6, name: '文哲', age: 40, address: '山东'},
                     {id: 7, name: '勃拉姆斯', age: 40, address: '国外'},
                 ],
-                selected: []
+                selected: [],
+                selections: {
+                    name: 'asc',
+                    age: 'desc',
+                    address: true
+                }
             }
         },
         mounted() {

@@ -3,19 +3,32 @@
         <table class="z-table" :class="{bordered, striped, [`${size}`]: true}">
             <thead>
             <tr>
-                <th class="z-table-input-th">
-                    <div class="z-table-input-wrapper" :class="{checked: selectAll, indeterminate: indeterminate}" @click="onClickAll"></div>
+                <th class="z-table-input-th" v-if="selectedItems">
+                    <div class="z-table-input-wrapper" :class="{checked: selectAll, indeterminate: indeterminate}"
+                         @click="onClickAll"></div>
                 </th>
-                <th v-for="column in columns" :key="columns.field">{{column.name}}</th>
+                <th v-for="column in columns" :key="column.field">
+                    <div class="z-table-field-wrapper">
+                        <div>{{column.name}}</div>
+                        <div class="icon-group" @click="changeSortRule(column.field)">
+                            <z-icon name="up-solid"
+                                    :class="{active: selections[column.field] && selections[column.field] ==='asc'}"></z-icon>
+                            <z-icon name="down-solid"
+                                    :class="{active: selections[column.field] && selections[column.field] ==='desc'}"></z-icon>
+                        </div>
+                    </div>
+
+                </th>
             </tr>
             </thead>
             <tbody>
             <tr v-for="source in dataSource" :key="source.id">
-                <td class="z-table-input-td">
+                <td class="z-table-input-td" v-if="selectedItems">
                     <div class="z-table-input-wrapper" :class="{checked: isChecked(source.id)}"
                          @click="onClickCheckBox(source)">
                     </div>
                 </td>
+
                 <td v-for="column in columns" :key="column.field">{{source[column.field]}}</td>
             </tr>
             </tbody>
@@ -24,8 +37,11 @@
 </template>
 
 <script>
+    import ZIcon from './icon'
+
     export default {
         name: "ZTable",
+        components: {ZIcon},
         props: {
             columns: {
                 type: Array,
@@ -50,6 +66,9 @@
             },
             selectedItems: {
                 type: Array
+            },
+            selections: {
+                type: Object
             }
         },
         computed: {
@@ -79,14 +98,27 @@
                 this.$emit('update:selectedItems', copy)
             },
             onClickAll() {
-                if(this.selectAll) {
+                if (this.selectAll) {
                     this.$emit('update:selectedItems', [])
                 } else {
                     let copy = JSON.parse(JSON.stringify(this.dataSource))
                     this.$emit('update:selectedItems', copy)
                 }
-
+            },
+            changeSortRule(field) {
+                console.log(field)
+                let copy = JSON.parse(JSON.stringify(this.selections))
+                console.log(copy[field])
+                if (copy[field] === 'asc') {
+                    copy[field] = 'desc'
+                } else if (copy[field] === 'desc'){
+                    copy[field] = true
+                } else if (copy[field] === true){
+                    copy[field] = 'asc'
+                }
+                this.$emit('update:selections', copy)
             }
+
 
         }
 
@@ -132,7 +164,23 @@
                 }
             }
 
-            .z-table-input-th, .z-table-input-td {
+            .z-table-field-wrapper {
+                display: flex;
+                align-items: center;
+                & .icon-group {
+                    display: flex;
+                    flex-direction: column;
+                    margin-left: 2px;
+                    > svg {
+                        fill: $grey;
+                        width: 0.6em;
+                        height: 0.6em;
+                        &.active {
+                            fill: #333;
+                        }
+                    }
+                }
+
             }
 
             &-input-wrapper {
@@ -177,10 +225,9 @@
                         transform: rotate(0deg);
                         position: absolute;
                         margin-top: 2px;
-                        margin-left:2px;
+                        margin-left: 2px;
                         top: 0%;
                         left: 0%;
-
                     }
                 }
             }
