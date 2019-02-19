@@ -39,4 +39,5 @@
                 <z-menu-item name="rb">R&B</z-menu-item>
             </z-sub-menu>
         </z-menu>
+         <z-pager :total="4" :current.sync="current"></z-pager>
 ```
