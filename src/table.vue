@@ -1,38 +1,41 @@
 <template>
-    <div class="z-table-wrapper">
-        <table class="z-table" :class="{bordered, striped, [`${size}`]: true}">
-            <thead>
-            <tr>
-                <th class="z-table-input-th" v-if="selectedItems">
-                    <div class="z-table-input-wrapper" :class="{checked: selectAll, indeterminate: indeterminate}"
-                         @click="onClickAll"></div>
-                </th>
-                <th v-for="column in columns" :key="column.field">
-                    <div class="z-table-field-wrapper">
-                        <div>{{column.name}}</div>
-                        <div class="icon-group" @click="changeSortRule(column.field)" v-if="sortDirections[column.field]">
-                            <z-icon name="up-solid"
-                                    :class="{active: sortDirections[column.field] ==='asc'}"></z-icon>
-                            <z-icon name="down-solid"
-                                    :class="{active: sortDirections[column.field] ==='desc'}"></z-icon>
+    <div class="z-table-wrapper" ref="wrapper">
+        <div class="z-table-wrapper2" ref="tableWrapper">
+            <table class="z-table" :class="{bordered, striped, [`${size}`]: true}" ref="table">
+                <thead ref="tableHeader">
+                <tr>
+                    <th class="z-table-input-th" v-if="selectedItems">
+                        <div class="z-table-input-wrapper" :class="{checked: selectAll, indeterminate: indeterminate}"
+                             @click="onClickAll"></div>
+                    </th>
+                    <th v-for="column in columns" :key="column.field" :style="{width: column.width+'px'}">
+                        <div class="z-table-field-wrapper">
+                            <div>{{column.name}}</div>
+                            <div class="icon-group" @click="changeSortRule(column.field)"
+                                 v-if="sortDirections[column.field]">
+                                <z-icon name="up-solid"
+                                        :class="{active: sortDirections[column.field] ==='asc'}"></z-icon>
+                                <z-icon name="down-solid"
+                                        :class="{active: sortDirections[column.field] ==='desc'}"></z-icon>
+                            </div>
                         </div>
-                    </div>
 
-                </th>
-            </tr>
-            </thead>
-            <tbody>
-            <tr v-for="source in dataSource" :key="source.id">
-                <td class="z-table-input-td" v-if="selectedItems">
-                    <div class="z-table-input-wrapper" :class="{checked: isChecked(source.id)}"
-                         @click="onClickCheckBox(source)">
-                    </div>
-                </td>
+                    </th>
+                </tr>
+                </thead>
+                <tbody>
+                <tr v-for="source in dataSource" :key="source.id">
+                    <td class="z-table-input-td" v-if="selectedItems" >
+                        <div class="z-table-input-wrapper" :class="{checked: isChecked(source.id)}"
+                             @click="onClickCheckBox(source)">
+                        </div>
+                    </td>
 
-                <td v-for="column in columns" :key="column.field">{{source[column.field]}}</td>
-            </tr>
-            </tbody>
-        </table>
+                    <td v-for="column in columns" :key="column.field" :style="{width: column.width+ 'px'}">{{source[column.field]}}</td>
+                </tr>
+                </tbody>
+            </table>
+        </div>
     </div>
 </template>
 
@@ -60,6 +63,7 @@
             },
             size: {
                 type: String,
+                default: 'big',
                 validator(value) {
                     return value === 'middle' || value === 'small' || value === "big"
                 }
@@ -69,7 +73,22 @@
             },
             sortDirections: {
                 type: Object
+            },
+            height: {
+                type: Number
             }
+        },
+        mounted() {
+            let tableCopy = this.$refs.table.cloneNode(false)
+
+            let tableHeader = this.$refs.table.children[0]
+            tableCopy.appendChild(tableHeader)
+            tableCopy.classList.add('z-table-copy')
+            this.$refs.tableWrapper.append(tableCopy)
+            let {height} = tableHeader.getBoundingClientRect()
+
+            this.$refs.tableWrapper.style.height = this.height - parseInt(height) + 'px'
+            this.$refs.wrapper.style.paddingTop = height + 'px'
         },
         computed: {
             selectAll() {
@@ -109,9 +128,9 @@
                 let copy = JSON.parse(JSON.stringify(this.sortDirections))
                 if (copy[field] === 'asc') {
                     copy[field] = 'desc'
-                } else if (copy[field] === 'desc'){
+                } else if (copy[field] === 'desc') {
                     copy[field] = true
-                } else if (copy[field] === true){
+                } else if (copy[field] === true) {
                     copy[field] = 'asc'
                 }
                 this.$emit('update:sortDirections', copy)
@@ -127,6 +146,10 @@
     @import 'var';
 
     .z-table-wrapper {
+        position: relative;
+        .z-table-wrapper2 {
+            overflow: auto;
+        }
         .z-table {
             border-radius: $border-radius;
             width: 100%;
@@ -231,6 +254,9 @@
             }
 
         }
+        .z-table-input-th, .z-table-input-td {
+            width: 20px;
+        }
 
         .z-table.bordered {
             border-top: $tb-border;
@@ -259,5 +285,10 @@
 
         }
 
+        .z-table-copy {
+            position: absolute;
+            top: 0;
+            left: 0;
+        }
     }
 </style>

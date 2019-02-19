@@ -1,7 +1,7 @@
 <template>
     <div id="app">
-        <z-table :columns="columns" :data-source="dataSource" striped  :selected-items.sync="selected"
-        :sort-directions.sync="sortDirections">
+        <z-table :columns="columns" :data-source="dataSource" striped bordered :selected-items.sync="selected"
+        :sort-directions.sync="sortDirections" :height="200">
         </z-table>
     </div>
 </template>
@@ -14,13 +14,13 @@
         data() {
             return {
                 columns: [
-                    {name: '姓名', field: 'name'},
-                    {name: '年龄', field: 'age'},
+                    {name: '姓名', field: 'name', width: 50},
+                    {name: '年龄', field: 'age', width: 80},
                     {name: '住址', field: 'address'}
                 ],
                 dataSource: [
                     {id: 1, name: '周杰伦', age: 40, address: '台北'},
-                    {id: 2, name: '周杰', age: 40, address: '湖北'},
+                    {id: 2, name: '周杰', age: 40, address: '湖北', description: 'hello world'},
                     {id: 3, name: '杰伦', age: 40, address: '山东'},
                     {id: 4, name: '周伦', age: 40, address: '福建'},
                     {id: 5, name: '伦', age: 40, address: '杭州'},
@@ -38,7 +38,6 @@
         },
         methods: {
         },
-
     }
 </script>
 <style lang="scss">
