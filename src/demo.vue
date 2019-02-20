@@ -1,7 +1,8 @@
 <template>
-    <div id="app">
-        <z-table :columns="columns" :data-source="dataSource" striped bordered :selected-items.sync="selected"
-        :sort-directions.sync="sortDirections" :height="200" :operate-width="50" :action="action" >
+    <div id="app" >
+        <button @click="xxx = !xxx">111</button>
+        <z-table v-if="xxx"  :columns="columns" :data-source="dataSource" striped bordered :selected-items.sync="selected"
+        :sort-directions.sync="sortDirections" :height="200"  >
             <template slot-scope="source">
                 <button @click="edit(source)">编辑</button>
             </template>
@@ -16,6 +17,7 @@
         components: {ZTable},
         data() {
             return {
+                xxx: true,
                 columns: [
                     {name: '姓名', field: 'name', width: 50},
                     {name: '年龄', field: 'age', width: 80},

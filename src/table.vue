@@ -60,6 +60,11 @@
     export default {
         name: "ZTable",
         components: {ZIcon},
+        data() {
+            return {
+                tableCopy: null
+            }
+        },
         props: {
             columns: {
                 type: Array,
@@ -106,6 +111,9 @@
                 this.fixedHeader()
             }
         },
+        beforeDestroy() {
+            this.tableCopy.remove()
+        },
         computed: {
             selectAll() {
                 if (this.selectedItems.length !== this.dataSource.length) {
@@ -123,6 +131,7 @@
             fixedHeader() {
                 let tableCopy = this.$refs.table.cloneNode(false)
 
+                this.tableCopy = tableCopy
                 let tableHeader = this.$refs.table.children[0]
                 tableCopy.appendChild(tableHeader)
                 tableCopy.classList.add('z-table-copy')
@@ -182,7 +191,6 @@
         }
         .z-table {
             border-radius: $border-radius;
-            width: 100%;
             border-collapse: collapse;
             border-spacing: 0;
             &.middle {
