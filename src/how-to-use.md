@@ -40,4 +40,10 @@
             </z-sub-menu>
         </z-menu>
          <z-pager :total="4" :current.sync="current"></z-pager>
+          <z-table v-if="xxx"  :columns="columns" :data-source="dataSource" striped bordered :selected-items.sync="selected"
+                 :sort-directions.sync="sortDirections" :height="200"  >
+                     <template slot-scope="source">
+                         <button @click="edit(source)">编辑</button>
+                     </template>
+                 </z-table>
 ```
