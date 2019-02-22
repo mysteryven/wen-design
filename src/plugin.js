@@ -1,6 +1,7 @@
 import Toast from './toast'
 
 let previousToast
+
 export default {
     install(Vue, options) {
         Vue.prototype.$toast = function (message, toastOptions) {
@@ -11,8 +12,6 @@ export default {
             } else {
                 previousToast = toast
             }
-
-
         }
     }
 }

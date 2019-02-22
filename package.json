@@ -1,12 +1,11 @@
 {
   "name": "wwz-ui",
-  "version": "0.1.0",
+  "version": "0.1.8",
   "description": "this is a ui framework created by VUE  ",
-  "main": "dist/index.js",
-  "private": true,
+  "main": "dist/zui.umd.min.js",
   "scripts": {
     "serve": "vue-cli-service serve",
-    "build": "vue-cli-service build",
+    "build": "vue-cli-service build --target lib --name zui src/index.js",
     "test:unit": "vue-cli-service test:unit",
     "test": "vue-cli-service test:unit",
     "docs:dev": "vuepress dev docs",
@@ -30,10 +29,10 @@
   },
   "homepage": "https://github.com/mysteryven/ui-wheels#readme",
   "dependencies": {
-    "vue": "^2.5.21",
-    "vue-meta": "^1.5.8"
+    "vue": "^2.5.21"
   },
   "devDependencies": {
+    "vue-meta": "^1.5.8",
     "@vue/cli-plugin-babel": "^3.3.0",
     "@vue/cli-plugin-unit-mocha": "^3.3.0",
     "@vue/cli-service": "^3.3.0",
