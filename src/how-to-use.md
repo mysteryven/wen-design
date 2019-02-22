@@ -46,4 +46,7 @@
                          <button @click="edit(source)">编辑</button>
                      </template>
                  </z-table>
+                  <z-sticky :distance="100">
+                                 <button>hello</button>
+                             </z-sticky>
 ```
