@@ -1,0 +1,11 @@
+root: ./docs
+
+structure:
+  主页: ../README.md
+  安装: ./install/README.md
+  快速上手: ./get-started/README.md
+  组件库:
+    button 按钮: components/button.md
+
+redirects:
+  previous/page: ./README.md
