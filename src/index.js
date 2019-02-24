@@ -28,7 +28,7 @@ export {default as Input} from './input'
 export {default as Plugin} from './plugin'
 export {default as Pager} from './pager'
 export {default as Sticky} from './sticky'
-export {default as Table} from './table'
+export {default as Table} from './table/table'
 export {default as Toast} from './toast'
 
 

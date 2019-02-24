@@ -55,7 +55,7 @@
 </template>
 
 <script>
-    import ZIcon from './icon'
+    import ZIcon from '../icon'
 
     export default {
         name: "ZTable",
