@@ -1,0 +1,13 @@
+/src
+/notes
+/docs
+/public
+/test
+/tests
+/.idea/
+.travis.yml
+deploy.sh
+index.html
+/index.js
+
+
