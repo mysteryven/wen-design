@@ -20,6 +20,5 @@ import Collapse from './src/collapse/collapse'
 import CollapseItem from './src/collapse/collapse-item'
 
 
-export default {Icon, ButtonGroup, ButtonSelect,
     Button, Input, Row, Col, Layout, Header, CollapseItem, Collapse, Content,
     Sider, Footer, Toast, Tabs, TabsHead, TabsBody, TabsItem, TabsPane}

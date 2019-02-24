@@ -127,6 +127,7 @@
                 if (vNode.data.scopedSlots) {
                     render = vNode.data.scopedSlots.default
                 }
+                console.log(render)
                 return {width, name, field, render}
             })
 
