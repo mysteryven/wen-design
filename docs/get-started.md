@@ -4,7 +4,7 @@
 
 打开我们刚刚初始化完成的项目的 src 目录 下面的 `main.js`，把里面的内容替换成如下代码：
 
-```js
+```javascript
  import Vue from 'vue'
  import {Button, ButtonSelect, ButtonGroup} from 'wwz-ui'
  import 'wwz-ui/dist/index.css'
@@ -22,14 +22,13 @@ new Vue({
       'z-button-select': ButtonSelect
   }
 })
- 
 ```
 
 ## 引入 HTML
 
 打开 public 目录下的 `index.html`，替换成以下代码
 
-```html
+```markup
 <!DOCTYPE html>
 <html lang="en">
   <head>
@@ -55,14 +54,11 @@ new Vue({
     </div>
   </body>
 </html>
-
 ```
 
+如果出现了 "You are using the runtime-only build of Vue where the template compiler is not available. Either pre-compile the templates into render functions, or use the compiler-included build. " 这样的报错信息，你只需在项目的根目录创建一个 文件名为 「vue.config.js」,里面的内容为：
 
- 如果出现了  "You are using the runtime-only build of Vue where the template compiler is not available. Either pre-compile the templates into render functions, or use the compiler-included build. "
-这样的报错信息，你只需在项目的根目录创建一个 文件名为 「vue.config.js」,里面的内容为：
-
-```
+```text
 module.exports = {
     runtimeCompiler: true
 }
@@ -72,11 +68,13 @@ module.exports = {
 
 ## 运行
 
-此时，在命令行运行 
-```
-yarn serve 
+此时，在命令行运行
+
+```text
+yarn serve
 ```
 
 好了，是否看到一个带点赞 icon 的按钮了呢？如果看到，恭喜你，已经成功了！
 
 有任何问题，欢迎提 issue 或者给我发邮件：mysteryven@gmail.com
+

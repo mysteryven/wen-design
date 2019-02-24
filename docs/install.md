@@ -15,16 +15,7 @@ cd hello-word
 
 为了避免产生不可预测的 Bug，如果你在安装依赖的时候使用了 npm 的安装方法，推荐一直坚持使用它，yarn 亦然。由于 Vue 推荐使用 yarn，我们就只使用 yarn 来操作。
 
-```
+```text
 yarn add wwz-ui
 ```
-
-
-
-
-
-
-
-
-
 
