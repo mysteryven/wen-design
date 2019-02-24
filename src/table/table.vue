@@ -21,7 +21,7 @@
                         </div>
                     </th>
                     <template v-if="action">
-                       <th  ref="actionHeader" :style="{width: action.width + 'px'}">{{action.name}}</th>
+                        <th ref="actionHeader" :style="{width: action.width + 'px'}">{{action.name}}</th>
                     </template>
                 </tr>
                 </thead>
@@ -34,7 +34,12 @@
                     </td>
                     <td v-for="column in columns" v-if="column.field" :key="column.field"
                         :style="{width: column.width+ 'px'}">
-                        {{source[column.field]}}
+                        <template v-if="!column.render">
+                            {{source[column.field]}}
+                        </template>
+                        <template v-else>
+                            <v-node :vnode="column.render({value: source[column.field]})"></v-node>
+                        </template>
                     </td>
                     <template v-if="action">
                         <td class="random-operate}" :style="{width: action.width + 'px'}">
@@ -59,16 +64,22 @@
 
     export default {
         name: "ZTable",
-        components: {ZIcon},
+        components: {
+            ZIcon,
+            vNode: {
+                functional: true,
+                render: (h, context) => context.props.vnode
+            }
+
+        },
         data() {
             return {
-                tableCopy: null
+                tableCopy: null,
+                columns: []
             }
         },
         props: {
-            columns: {
-                type: Array,
-            },
+
             dataSource: {
                 type: Array,
                 required: true
@@ -107,6 +118,19 @@
 
         },
         mounted() {
+            this.columns = this.$slots.default.map(vNode => {
+                let width, render
+                let {name, field} = vNode.componentOptions.propsData
+                if (vNode.componentOptions.propsData.width) {
+                    width = vNode.componentOptions.propsData.width
+                }
+                if (vNode.data.scopedSlots) {
+                    render = vNode.data.scopedSlots.default
+                }
+                return {width, name, field, render}
+            })
+
+
             if (this.height) {
                 this.fixedHeader()
             }
@@ -190,6 +214,7 @@
             overflow: auto;
         }
         .z-table {
+            width: 100%;
             border-radius: $border-radius;
             border-collapse: collapse;
             border-spacing: 0;
