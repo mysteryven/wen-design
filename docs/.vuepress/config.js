@@ -10,22 +10,69 @@ module.exports = {
             {text: 'Github', link: 'https://github.com/mysteryven/wen-design'},
         ],
         sidebar: [
-            '/',
+            {
+                title: '前言',
+                children: [
+                    '/'
+                ]
+            },
             {
                 title: '入门',
-                collapsable: false,
+                collapsable: true,
                 children: [
                     '/install/',
                     '/get-started/'
                 ]
             },
             {
-                title: '组件库',
+                title: '通用',
                 collapsable: false,
                 children: [
-                    '/components/button/'
+                    '/components/icon/',
+                    '/components/button/',
+                ]
+            },
+            {
+                title: '布局',
+                collapsable: false,
+                children: [
+                    '/components/grid/',
+                    '/components/layout/'
+                ]
+            }, {
+                title: '导航',
+                collapsable: false,
+                children: [
+                    '/components/button/button-group.md',
+                    '/components/menu/',
+                    '/components/nav/'
+                ]
+            }, {
+                title: '数据录入',
+                collapsable: false,
+                children: [
+                    '/components/button/button-select.md',
+                    '/components/cascader/'
+                ]
+            },
+            {
+                title: '数据展示',
+                collapsable: false,
+                children: [
+                    '/components/carousel/',
+                    '/components/collapse/',
+                    '/components/table/',
+                    'components/popover/'
+                ]
+            },
+            {
+                title: '反馈',
+                collapsable: false,
+                children: [
+                    '/components/message/'
                 ]
             }
+
         ]
     },
     scss:{

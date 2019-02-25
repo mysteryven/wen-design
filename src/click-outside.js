@@ -20,10 +20,8 @@ export default {
         callbacks.forEach((item, index) => {
             if (el === item.el || el.contains(item.el)) {
                 callbacks.splice(index, 1)
-                console.log(callbacks)
                 document.removeEventListener('click', listenToClick)
                 document.addEventListener('click', listenToClick)
-                return;
             }
         })
     }

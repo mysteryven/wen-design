@@ -1,9 +1,10 @@
 <template>
-    <button class="z-button" :class="{[`icon-${iconPosition}`]: true, disabled: disabled, circle: isCircle}"
-        @click="$emit('click')">
-        <z-icon class="icon" v-if="icon && !loading" :name="icon"></z-icon>
-        <z-icon class="icon loading" v-if="loading" name="loading"></z-icon>
-        <div class="content" :class="{loadingText: loading}" v-if="!isCircle">
+    <button class="z-button" :class="{[`icon-${iconPosition}`]: true,
+    disabled: disabled, circle: isCircle, wrap}"
+        @click="onClick">
+        <z-icon class="z-icon" v-if="icon && !loading" :name="icon"></z-icon>
+        <z-icon class="z-icon loading" v-if="loading" name="loading"></z-icon>
+        <div class="z-button-content" :class="{loadingText: loading}" v-if="!isCircle">
             <slot></slot>
         </div>
     </button>
@@ -14,6 +15,11 @@
     export default {
         components: {
             'z-icon': Icon
+        },
+        data() {
+            return {
+                wrap : false
+            }
         },
         props: {
             icon: {},
@@ -36,6 +42,24 @@
                 type: Boolean,
                 default: false
             }
+        },
+        mounted() {
+            this.$el.addEventListener('animationend', this.listenAnimation)
+        },
+        beforeDestroy() {
+            this.$el.removeEventListener('animationend', this.listenAnimation)
+        },
+        methods: {
+            onClick(e) {
+                this.$emit('click', e)
+                if (this.loading || this.disabled) {
+                    return
+                }
+                this.wrap = true
+            },
+            listenAnimation() {
+                this.wrap = false
+            },
         }
     }
 </script>
@@ -56,19 +80,36 @@
         border-radius: $button-border-radius;
         outline: none;
         vertical-align: middle;
+        position: relative;
         &:hover {
-            border: 1px solid $border-color-hover;
-            box-shadow: 1px 1px 10px rgba(0, 0, 0,0.1);
+            box-shadow: 1px 1px 8px rgba(0, 0, 0, 0.1);
         }
-        &:active{
-            background: $button-active-bg;
+        &:active {
         }
-        >.icon {
+        &.wrap{
+            &::after {
+                content: '';
+                display: block;
+                background: white;
+                position: absolute;
+                z-index: 1;
+                top: -2px;
+                left: -2px;
+                bottom: -2px;
+                right: -2px;
+                border-radius: inherit;
+                border: 2px solid $blue;
+                opacity: 0.4;
+                animation: wrap-border 0.3s linear ;
+                flex-shrink: 0;
+            }
+        }
+        >.z-icon {
             order: 1;
             margin-right: 0.3em;
             margin-left: 0
         }
-        >.content {
+        .z-button-content {
             order: 2
         }
         &.icon-right {
@@ -77,7 +118,7 @@
                 margin-left: 0.3em;
                 margin-right: 0
             }
-            >.content {
+            >.z-button-content {
                 order: 1
             }
         }
@@ -92,6 +133,9 @@
         cursor: not-allowed;
         background-color: $button-disable-bg;
         color: $button-disable-color;
+        &.wrap::after {
+            display: none;
+        }
     }
     .disabled:hover {
         box-shadow: none;
@@ -105,10 +149,20 @@
         display: inline-flex;
         justify-content: center;
         align-items: center;
-        > .icon {
+        > .z-icon {
             margin: 0;
             height: 1em;
             width: 1em
+        }
+    }
+    @keyframes wrap-border {
+        to {
+            top: -6px;
+            left: -6px;
+            bottom: -6px;
+            right: -6px;
+            border-width: 6px;
+            opacity: 0;
         }
     }
 

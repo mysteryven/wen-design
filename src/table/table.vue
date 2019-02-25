@@ -8,11 +8,11 @@
                         <div class="z-table-input-wrapper" :class="{checked: selectAll, indeterminate: indeterminate}"
                              @click="onClickAll"></div>
                     </th>
-                    <th v-for="column in columns" :key="column.field" :style="{width: column.width+'px'}">
+                    <th v-for="column in columns" v-if="columns.length > 0" :key="column.field" :style="{width: column.width+'px'}">
                         <div class="z-table-field-wrapper">
                             <div>{{column.name}}</div>
                             <div class="icon-group" @click="changeSortRule(column.field)"
-                                 v-if="sortDirections[column.field]">
+                                 v-if="sortDirections && sortDirections[column.field]">
                                 <z-icon name="up-solid"
                                         :class="{active: sortDirections[column.field] ==='asc'}"></z-icon>
                                 <z-icon name="down-solid"
@@ -79,7 +79,6 @@
             }
         },
         props: {
-
             dataSource: {
                 type: Array,
                 required: true
@@ -120,6 +119,9 @@
         mounted() {
             this.columns = this.$slots.default.map(vNode => {
                 let width, render
+                if (!vNode.componentOptions.propsData) {
+                   return
+                }
                 let {name, field} = vNode.componentOptions.propsData
                 if (vNode.componentOptions.propsData.width) {
                     width = vNode.componentOptions.propsData.width
@@ -130,6 +132,7 @@
                 console.log(render)
                 return {width, name, field, render}
             })
+            console.log(this.columns)
 
 
             if (this.height) {
