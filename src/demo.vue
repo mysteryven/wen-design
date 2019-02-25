@@ -15,10 +15,12 @@
 <script>
     import ZTable from './table/table'
     import ZTableColumn from './table/table-column'
+    import ZButton from './button/button'
+    import ZIcon from './icon'
 
     export default {
         name: 'demo',
-        components: {ZTable, ZTableColumn},
+        components: {ZTable, ZTableColumn, ZButton, ZIcon},
         data() {
             return {
                 columns: [

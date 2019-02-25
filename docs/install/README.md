@@ -2,7 +2,7 @@
 
 
 ## 安装包
-```bash
+```vue
 npm install wwz-ui
 ```
 

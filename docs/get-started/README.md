@@ -4,6 +4,8 @@
 
 这是最简单的方法，可以让你快速看到结果
 
+<iframe src="https://codesandbox.io/embed/8xo4m5ywq2?fontsize=14" style="width:100%; height:500px; border:0; border-radius: 4px; overflow:hidden;" sandbox="allow-modals allow-forms allow-popups allow-scripts allow-same-origin"></iframe>
+
 
 ## 在本地使用  
 
@@ -11,7 +13,7 @@
 
 本 UI 库是依赖于 Vue 实现的，需要配合 vue-cli3 来使用。首先，我们需要切换到安全目录，运行：
 
-```bash
+```vue
 npm install -g @vue/cli
 npm install -g @vue/cli-service-global
 vue create hello-world
@@ -29,7 +31,7 @@ yarn add wwz-ui
 打开项目根路径下的 src 文件夹的 App.vue。
 
 ```
-    vi src/App.vue # 或者 open src/App.vue 
+vi src/App.vue  
 ```
 
 替换成下面的代码。
@@ -37,23 +39,17 @@ yarn add wwz-ui
 ```vue
 <template>
   <div id="app">
-    <z-button>你好！</z-button>
-    <img alt="Vue logo" src="./assets/logo.png">
-    <HelloWorld msg="Welcome to Your Vue.js App"/>
+    <z-button>Hello World</z-button>
   </div>
 </template>
 
 <script>
 import 'wwz-ui/dist/zui.css'
-
-import HelloWorld from './components/HelloWorld.vue'
-
 import {Button} from 'wwz-ui'
 
 export default {
   name: 'app',
   components: {
-    HelloWorld,
     ZButton: Button
   }
 }
@@ -69,7 +65,6 @@ export default {
   margin-top: 60px;
 }
 </style>
-
 ```
 
 ### 4. 运行
