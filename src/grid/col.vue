@@ -55,6 +55,7 @@
 
 <style lang="scss" scoped>
    .z-col {
+       box-sizing: border-box;
        $class-prefix: col-;
        background: transparent;
        @for $n from 1 through 24 {

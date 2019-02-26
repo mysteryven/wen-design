@@ -5,7 +5,7 @@
 </template>
 <script>
     export default {
-        name: 'zFooter'
+        name: 'ZFooter'
     }
 </script>
 <style scoped lang="scss"></style>

@@ -30,6 +30,7 @@
 
 <style lang="scss" scoped>
     .z-row {
+        box-sizing: border-box;
         display: flex;
         flex-wrap: wrap;
         background-color: transparent;

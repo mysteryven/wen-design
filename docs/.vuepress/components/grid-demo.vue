@@ -33,22 +33,50 @@
                 <div class="z-content">span=8</div>
             </z-col>
         </z-row>
-
         <h3>带间隙</h3>
         <z-row class="z-grid-row" gutter="10">
             <z-col span="6" class="z-grid-col">
-                <div class="z-content">span=8</div>
+                <div class="z-content">span=6</div>
             </z-col>
             <z-col span="6" class="z-grid-col">
-                <div class="z-content">span=8</div>
+                <div class="z-content">span=6</div>
             </z-col>
             <z-col span="6" class="z-grid-col">
-                <div class="z-content">span=8</div>
+                <div class="z-content">span=6</div>
             </z-col>
             <z-col span="6" class="z-grid-col">
-                <div class="z-content">span=8</div>
+                <div class="z-content">span=6</div>
             </z-col>
+        </z-row>
+        <h3>左右偏移</h3>
+        <z-row class="z-grid-row" gutter="10">
+            <z-col span="6" class="z-grid-col">
+                <div class="z-content">span=6</div>
+            </z-col>
+            <z-col span="6" offset="6" class="z-grid-col">
+                <div class="z-content">span=6 offset=6 </div>
+            </z-col>
+            <z-col span="6" class="z-grid-col">
+                <div class="z-content">span=6</div>
+            </z-col>
+        </z-row>
+        <z-row class="z-grid-row">
+            <z-col span="12" offset="6" class="z-grid-col">
+                <div class="z-content">span=6 offset=12</div>
+            </z-col>
+            <z-col span="6" class="z-grid-col">
+                <div class="z-content">span=6 offset=6 </div>
+            </z-col>
+        </z-row>
 
+        <h3>适应 ipad、电脑、手机</h3>
+        <z-row class="z-grid-row">
+            <z-col span="12" offset="0" :pc="{span: 6, offset: 0}" :ipad="{span: 4}" class="z-grid-col">
+                <div class="z-content">调整窗口大小查看效果</div>
+            </z-col>
+            <z-col span="12" offset="0" :pc="{span: 12, offset: 6}" :ipad="{span: 4, offset: 4}" class="z-grid-col">
+                <div class="z-content">具体逻辑请看代码</div>
+            </z-col>
         </z-row>
     </div>
 

@@ -5,32 +5,31 @@
 </template>
 <script>
     export default {
-        name: 'zLayout',
+        name: 'ZLayout',
         data() {
             return {
                 layoutClass: {
-                    hasSider: false
+                    zHasSider: false
                 }
             }
         },
         mounted() {
             this.$children.forEach(vm => {
-                if (vm.$options.name === 'zSider') {
-                   this.layoutClass.hasSider = true
-                    return
+                if (vm.$options.name === 'ZSider') {
+                    this.layoutClass.zHasSider = true
                 }
             })
         }
     }
 </script>
 <style scoped lang="scss">
-   .z-layout {
-       display: flex;
-       flex-direction: column;
-       flex-grow: 1;
-       &.hasSider {
-           flex-direction: row;
-       }
-   }
+    .z-layout {
+        display: flex;
+        flex-direction: column;
+        flex-grow: 1;
+        &.zHasSider {
+            flex-direction: row;
+        }
+    }
 
 </style>

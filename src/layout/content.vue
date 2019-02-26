@@ -1,15 +1,15 @@
 <template>
-    <div class="content">
+    <div class="z-content">
         <slot></slot>
     </div>
 </template>
 <script>
     export default {
-        name: 'zContent'
+        name: 'ZContent'
     }
 </script>
 <style scoped lang="scss">
-   .content {
+   .z-content {
        flex-grow: 1;
    }
 </style>

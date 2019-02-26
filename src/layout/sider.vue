@@ -1,15 +1,15 @@
 <template>
-    <div class="sider">
+    <div class="z-sider">
         <slot></slot>
     </div>
 </template>
 <script>
     export default {
-        name: 'zSider'
+        name: 'ZSider'
     }
 </script>
 <style scoped lang="scss">
-    .sider {
+    .z-sider {
         flex-grow: 1;
     }
 </style>
