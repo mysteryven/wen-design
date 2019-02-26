@@ -14,7 +14,6 @@
         computed: {
             rowStyle() {
                 let {gutter} = this
-                console.log(gutter)
                 return {
                     'margin-left': -gutter / 2 + 'px',
                     'margin-right': -gutter / 2 + 'px'

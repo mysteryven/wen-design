@@ -99,8 +99,8 @@
                 right: -2px;
                 border-radius: inherit;
                 border: 2px solid $blue;
-                opacity: 0.4;
-                animation: wrap-border 0.3s linear ;
+                opacity: 0.3;
+                animation: wrap-border 0.5s linear ;
                 flex-shrink: 0;
             }
         }
@@ -157,10 +157,10 @@
     }
     @keyframes wrap-border {
         to {
-            top: -6px;
-            left: -6px;
-            bottom: -6px;
-            right: -6px;
+            top: -7px;
+            left: -7px;
+            bottom: -7px;
+            right: -7px;
             border-width: 6px;
             opacity: 0;
         }
