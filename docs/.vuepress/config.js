@@ -2,8 +2,12 @@ const path = require('path')
 
 module.exports = {
     title: 'ZUI',
+    logo: '/logo.jpg',
     description: 'Just playing around',
     base: '/wen-design/',
+    head: [
+        ['link', { rel: 'shortcut icon', type: "image/png", href: `/favicon.png` }]
+    ],
     themeConfig: {
         search: false,
         nav: [

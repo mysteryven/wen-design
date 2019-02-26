@@ -35,7 +35,7 @@ import {Button} from 'wwz-ui'
     </tr>
     <tr>
       <td>iconPosition</td>
-      <td>改变icon 的位置，可传 <code>left</code> 或 <code>right</code> </td>
+      <td>改变 icon 的位置，可传 <code>left</code> 或 <code>right</code> </td>
       <td>String</td>
       <td>left</td>
     </tr>
@@ -53,7 +53,7 @@ import {Button} from 'wwz-ui'
     </tr>
     <tr>
       <td>isCircle</td>
-      <td>使用圆形按钮</td>
+      <td>使用圆形按钮，当值为 `true` 的时候将只展示传入的图标</td>
       <td>Boolean</td>
       <td>fasle</td>
     </tr> 
