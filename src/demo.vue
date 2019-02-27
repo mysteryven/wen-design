@@ -1,124 +1,60 @@
 <template>
-    <div class="cascader-demo">
-        <h3>异步版本</h3>
-         <z-cascader :source.sync="artists" :selected.sync="selected" :loadData="loadData">
-            <z-button style="margin-bottom: 16px;">{{selectedString || '&nbsp;'}}</z-button>
-        </z-cascader>
+    <div>
+        <div class="toast-demo"><z-button @click="showToastMiddle">出现在页面中间</z-button></div>
+        <div class="toast-demo"><z-button @click="showToastTop">出现在页面顶部</z-button></div>
+        <div class="toast-demo"><z-button @click="showToastBottom">出现在页面底部</z-button></div>
+        <div class="toast-demo"><z-button @click="showToastClose">带关闭按钮，点击可执行操作</z-button></div>
+        <div class="toast-demo"><z-button @click="showToastClose2">不带关闭按钮，也可在关闭后执行操作</z-button></div>
     </div>
-</template>
 
+</template>
 <script>
-    import ZCascader from './cascader/cascader'
-    import ZButton from './button/button'
+    import Button from "./button/button";
 
     export default {
-        components: {ZCascader, ZButton},
-        data() {
-            return {
-                selected: [],
-                source: [
-                    {
-                        id: 1,
-                        name: '山东',
-                        children: [
-                            {id: 11, name: '莱芜', children: [{name: '莱芜区'}, {name: '莱城区'}]},
-                            {id: 12, name: '济南', children: [{name: '历下区'}, {name: '历城区'}]},
-                            {id: 13, name: '潍坊', children: [{name: '潍城区'}, {name: '寒亭区'}]}
-                        ]
-                    },
-                    {
-                        id: 2,
-                        name: '福建',
-                        children: [
-                            {
-                                id: 22, name: '泉州', children: [{name: '鲤城区'}, {name: '丰泽区'},
-                                    {name: '洛江区'}, {name: '泉港区'}]
-                            },
-                            {
-                                id: 23, name: '厦门', children: [
-                                    {name: '集美区'}, {name: '海沧区'}, {name: '湖里区'}]
-                            },
-                            {
-                                id: 24, name: '漳州', children: [
-                                    {name: '芗城区'}, {name: '龙文区'}
-                                ]
-                            }
-                        ]
-                    }
-                ],
-                db: [
-                    {parentId: 0, id: 1, name: '绘画', isLeaf: false},
-                    {parentId: 1, id: 11, name: '达芬奇', isLeaf: false},
-                    {parentId: 11, id: 111, name: '蒙娜丽莎', isLeaf: true},
-                    {parentId: 11, id: 111, name: '最后的晚餐', isLeaf: true},
-                    {parentId: 1, id: 12, name: '拉斐尔', isLeaf: false},
-                    {parentId: 12, id: 121, name: '雅典学派', isLeaf: true},
-                    {parentId: 0, id: 2, name: '雕塑', isLeaf: false},
-                    {parentId: 2, id: 21, name: '米开朗琪罗', isLeaf: true},
-                    {parentId: 0, id: 3, name: '音乐', isLeaf: false},
-                    {parentId: 3, id: 31, name: '贝多芬', isLeaf: true},
-                    {parentId: 31, id: 311, name: '第 1 交响曲', isLeaf: false},
-                    {parentId: 31, id: 312, name: '第 2 交响曲', isLeaf: false},
-                    {parentId: 31, id: 313, name: '第 3 交响曲', isLeaf: false},
-                    {parentId: 31, id: 314, name: '第 4 交响曲', isLeaf: false},
-                    {parentId: 31, id: 315, name: '第 5 交响曲', isLeaf: false},
-                    {parentId: 3, id: 32, name: '勃拉姆斯', isLeaf: true},
-                    {parentId: 3, id: 33, name: '肖邦', isLeaf: true},
-                    {parentId: 3, id: 34, name: '巴赫', isLeaf: true},
-                    {parentId: 3, id: 34, name: '拉赫玛尼诺夫', isLeaf: true},
-                    {parentId: 3, id: 34, name: '舒曼', isLeaf: true},
-                    {parentId: 3, id: 34, name: '莫扎特', isLeaf: true},
-                    {parentId: 3, id: 34, name: '李斯特', isLeaf: true},
-                    {parentId: 3, id: 34, name: '柴可夫斯基', isLeaf: true},
-                    {parentId: 3, id: 34, name: '瓦格纳', isLeaf: true},
-                ],
-                artists: []
-            }
-        },
-        computed: {
-            selectedString() {
-                if (this.selected.length === 0) {
-                    return 'Click Me '
-                } else {
-                    return this.selected.map((item) => item.name).join('/')
-                }
-            }
-        },
-        created() {
-            this.ajax().then((res)=>{
-                this.artists = res
-            })
-        },
+        components: { ZButton: Button },
+        mounted() {},
         methods: {
-            loadData(node, updateSource) {
-                let {id} = node
-                this.ajax(id).then((res)=>{
-                    updateSource(res)
+            showToastMiddle() {
+                this.$toast('谢谢使用!', {
+                    position: 'middle'
                 })
             },
-            ajax(id=0) {
-                return new Promise((resolve, reject)=>{
-                    setTimeout(()=>{
-                        let result = this.db.filter((item)=>{
-                            return item.parentId === id 
-                        })
-                        result.forEach(node => {
-                            if (this.db.filter(item => item.parentId === node.id).length > 0) {
-                                node.isLeaf = false
-                            }else{
-                                node.isLeaf = true
-                            }
-                        })
-                        resolve(result)
-                    }, 700)
+            showToastTop() {
+                this.$toast('谢谢使用!', {
+                    position: 'top'
+                })
+            },
+            showToastBottom() {
+                this.$toast('谢谢使用!', {
+                    position: 'bottom'
+                })
+            },
+            showToastClose() {
+                this.$toast('谢谢使用!', {
+                    position: 'middle',
+                    autoClose: false,
+                    closeButton: {
+                        text: '关闭',
+                        callback() {
+                            alert('click close button')
+                        }
+                    }
+                })
+            },
+            showToastClose2() {
+                this.$toast('谢谢使用!', {
+                    position: 'middle',
+                    closedCallback() {
+                        alert('我关闭了')
+                    }
                 })
             }
         }
-    }
+    };
 </script>
-
-<style scoped lang="scss">
-    .cascader-demo {
+<style>
+    .toast-demo {
         margin-top: 32px;
     }
 </style>

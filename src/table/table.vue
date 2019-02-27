@@ -38,7 +38,7 @@
                             {{source[column.field]}}
                         </template>
                         <template v-else>
-                            <v-node :vnode="column.render({value: source[column.field]})"></v-node>
+                            <v-node :vnode="column.render({value: source})"></v-node>
                         </template>
                     </td>
                     <template v-if="action">
@@ -89,7 +89,7 @@
             },
             striped: {
                 type: Boolean,
-                default: false
+                default: true
             },
             size: {
                 type: String,
@@ -117,30 +117,33 @@
 
         },
         mounted() {
-            this.columns = this.$slots.default.map(vNode => {
+            this.columns = this.$slots['z-column'].map(vNode => {
                 let width, render
                 if (!vNode.componentOptions.propsData) {
-                   return
+                    return
                 }
+
                 let {name, field} = vNode.componentOptions.propsData
+
                 if (vNode.componentOptions.propsData.width) {
                     width = vNode.componentOptions.propsData.width
                 }
                 if (vNode.data.scopedSlots) {
                     render = vNode.data.scopedSlots.default
                 }
-                console.log(render)
+
                 return {width, name, field, render}
             })
-            console.log(this.columns)
-
 
             if (this.height) {
                 this.fixedHeader()
             }
         },
         beforeDestroy() {
-            this.tableCopy.remove()
+            if (this.tableCopy) {
+                this.tableCopy.remove()
+            }
+
         },
         computed: {
             selectAll() {

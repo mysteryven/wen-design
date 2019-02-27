@@ -1,8 +1,8 @@
 import Vue from 'vue'
 import Demo from './demo.vue'
-import Meta from 'vue-meta'
+import  Plugin from "./plugin";
 
-Vue.use(Meta)
+Vue.use(Plugin);
 
 Vue.config.productionTip = false
 

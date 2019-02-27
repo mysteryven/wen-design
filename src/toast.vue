@@ -1,11 +1,11 @@
 <template>
-    <div class="wrapper"
+    <div class="z-wrapper"
          :class="toastClass">
-        <div class="message">
+        <div class="z-message">
             <slot></slot>
         </div>
-        <div class="close" v-if="closeButton" @click="closeClick">
-           {{closeButton.text || '关闭'}}
+        <div class="z-close" v-if="closeButton.text" @click="closeClick">
+            {{closeButton.text}}
         </div>
     </div>
 </template>
@@ -29,14 +29,14 @@
                 type: Boolean
             },
             duration: {
-                default: 1,
+                default: 2,
                 type: Number
             },
             closeButton: {
                 type: Object,
                 default() {
                     return {
-                        text: '关闭',
+                        text: '',
                         callback: null
                     }
                 },
@@ -84,6 +84,8 @@
     }
 </script>
 <style lang="scss" scoped>
+    @import "var";
+
     @keyframes slide-down {
         0% {
             margin-top: -100%;
@@ -92,6 +94,7 @@
             margin-top: 0;
         }
     }
+
     @keyframes slide-up {
         0% {
             margin-bottom: -100%;
@@ -100,6 +103,7 @@
             margin-top: 0;
         }
     }
+
     @keyframes fade-in {
         0% {
             opacity: 0;
@@ -108,20 +112,28 @@
             opacity: 1;
         }
     }
-    .wrapper {
+
+    .z-wrapper {
         position: fixed;
         left: 50%;
         display: inline-flex;
         justify-content: flex-end;
-        background-color: #424242;
+        background-color: #ffffff;
         max-width: 350px;
-        color: white;
+        color: black;
+        box-shadow: 0px 2px 16px 0 rgba(0, 0, 0, 0.2);;
         border-radius: 4px;
+
+        .z-message {
+            padding: 8px 12px;
+        }
+
         &.position-middle {
             top: 50%;
             transform: translate(-50%, -50%);
             animation: fade-in 400ms;
         }
+
         &.position-top {
             top: 0%;
             transform: translateX(-50%);
@@ -129,30 +141,30 @@
             border-top-right-radius: 0;
             animation: slide-down 400ms;
         }
+
         &.position-bottom {
             bottom: 0%;
             transform: translateX(-50%);
             animation: slide-up 400ms;
         }
+
         .message {
-            padding: 14px 16px
+            display: flex;
+            align-items: center;
+            justify-content: center;
         }
-        &.closed-wrapper {
-            .message {
-                display: flex;
-                align-items: center;
-                justify-content: center;
-            }
-            .close {
-                flex-shrink: 0;
-                display: flex;
-                align-items: center;
-                padding-left: 14px;
-                padding-right: 14px;
-                border-left: 1px solid #666666;
-                cursor: pointer;
-            }
+
+        .z-close {
+            flex-shrink: 0;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding-left: 4px;
+            padding-right: 4px;
+            border-left: 1px solid #ebebeb ;
+            cursor: pointer;
         }
+
 
     }
 

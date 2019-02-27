@@ -173,7 +173,7 @@
         max-width: 400px;
         &.position-top {
             transform: translate(-50%, -100%);
-            padding: 1em;
+            padding: 0.6em 1em;
             margin-top: -16px;
             &::before {
                 content: '';
@@ -196,7 +196,7 @@
 
                 bottom: 0%;
                 width: 20px;
-                height: 16px;
+                height: 6px;
                 left: 50%;
                 background: white;
                 transform-origin: top;
@@ -206,7 +206,7 @@
         }
         &.position-bottom {
             transform: translate(-50%, 100%);
-            padding: 1em;
+            padding: 0.6em 1em;
             margin-top: -6px;
             &::before {
                 content: '';
@@ -229,7 +229,7 @@
                 background: white;
                 top: 0%;
                 width: 20px;
-                height: 16px;
+                height: 6px;
                 left: 50%;
                 transform-origin: top;
                 margin-left: -8px;
@@ -239,7 +239,7 @@
 
         &.position-left{
             transform: translateX(-100%);
-            padding: 1em;
+            padding: 0.6em 1em;
             margin-left: -16px;
             &::before {
                 content: '';
@@ -270,7 +270,7 @@
         }
         &.position-right{
             margin-left: 16px;
-            padding: 1em;
+            padding: 0.6em 1em;
             &::before {
                 content: '';
                 position: absolute;

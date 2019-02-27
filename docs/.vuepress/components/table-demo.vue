@@ -1,6 +1,6 @@
 <template>
     <div id="app">
-        <z-table :data-source="dataSource" striped>
+        <z-table :data-source="dataSource">
             <template slot="z-column">
                 <z-table-column name="姓名" field="name">
                 </z-table-column>
@@ -12,16 +12,11 @@
                 <z-table-column name="住址" field="address"></z-table-column>
             </template>
         </z-table>
-        <!--<z-table :data-source="dataSource" striped>-->
-        <!--<z-table-column name="姓名" field="name"></z-table-column>-->
-        <!--<z-table-column name="年龄" field="age"></z-table-column>-->
-        <!--<z-table-column name="住址" field="address"></z-table-column>-->
-        <!--</z-table>-->
     </div>
 </template>
 <script>
-    import ZTable from '../../../../src/table/table'
-    import ZTableColumn from '../../../../src/table/table-column'
+    import ZTable from '../../../src/table/table'
+    import ZTableColumn from '../../../src/table/table-column'
 
     export default {
         name: 'demo',

@@ -88,7 +88,7 @@
     .z-cascader-wrapper {
         display: inline-block;
         position: relative;
-        box-shadow: 0px 2px 12px 0 rgba(0, 0, 0, 0.1);;
+        box-shadow: 0px 2px 12px 0 rgba(0, 0, 0, 0.1);
     }
 
     .z-trigger {
