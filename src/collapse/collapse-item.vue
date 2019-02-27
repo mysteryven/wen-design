@@ -1,17 +1,20 @@
 <template>
-    <div class="collapse-item" @click="toggle">
-        <div class="head">
+    <div class="z-collapse-item" >
+        <div class="z-head" @click="toggle">
             <div>{{title}}</div>
-            <z-icon name="left" class="arrow" :class="{active: open}"></z-icon>
+            <z-icon name="left" class="z-arrow" :class="{active: open}"></z-icon>
         </div>
-        <div class="content" v-show="open">
-            <slot></slot>
-        </div>
+        <transition  @enter="enter" @leave="leave"  @after-leave="afterLeave"
+                        @after-enter="afterEnter">
+            <div class="z-content" v-show="open">
+                <slot></slot>
+            </div>
+        </transition>  
+        
     </div>
 </template>
 
 <script>
-
     import Icon from '../icon'
 
     export default {
@@ -56,35 +59,67 @@
             },
             openItem() {
                 this.open = true
-            }
+            },
+            enter(el, done) {
+                let {height} = el.getBoundingClientRect()
+                el.style.height = 0
+                el.getBoundingClientRect()
+                el.style.height = `${height}px`
+                el.addEventListener('transitionend', () => {
+                    done()
+                })
+            },
+            afterEnter (el) {
+                el.style.height = 'auto'
+            },
+            
+            leave: function (el, done) {
+                let {height} = el.getBoundingClientRect()
+                el.style.height = `${height}px`
+                el.style.paddingBottom = 0
+                el.getBoundingClientRect()
+                el.style.height = 0
+               
+                el.addEventListener('transitionend', () => {
+                    done()
+                })
+            },
+            afterLeave: function (el) {
+                el.style.height = 'auto'
+                 el.style.paddingBottom = '8px' 
+            },
         }
     }
 </script>
 
 <style scoped lang="scss">
     $border-color: #ebeef5;
-
-    .collapse-item {
+    div {box-sizing: border-box}
+    .z-collapse-item {
+        border-bottom: 1px solid $border-color;
         &:first-child {
             border-top: 1px solid $border-color;
         }
-        border-bottom: 1px solid $border-color;
-        .head {
+        .z-head {
             min-height: 48px;
             align-items: center;
             display: flex;
             justify-content: space-between;
             cursor: pointer;
             font-weight: 500;
-            .arrow {
+            .z-arrow {
+                transition: transform 0.4s ease;
                 transform: rotate(180deg);
                 &.active {
                     transform: rotate(270deg);
                 }
             }
         }
-        .content {
-            padding-bottom: 20px;
+        .z-content {
+            padding-bottom: 8px;
+            overflow: hidden;
+            transition: height 0.4s ease;
         }
+        
     }
 </style>

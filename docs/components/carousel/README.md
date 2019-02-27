@@ -3,7 +3,7 @@
 ## 引入 
 
 ```bash
-import {Carousel, CarouselITem} from 'wwz-ui'
+import {Carousel, CarouselItem} from 'wwz-ui'
 ```
 
 ## 预览

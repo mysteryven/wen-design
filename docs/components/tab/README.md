@@ -37,7 +37,7 @@ import {Tabs, TabsHead, TabsBody, TabsPane, TabsItem} from 'wwz-ui'
 | --- | --- | --- | --- |
 | selected | 传给 `Tabs` 指示选中哪一项 | String | - |
 | name | 传给 `TabsItem` 和 `TabsPane`，必传，需要和对应的 `TabPane | TabsItem`  同名 | String | - |
-| activeClass | 传给 `TabsItem`，指定点击后的样式的类名，之后你还需要写这个类 | String | - | 
+| activeClass | 传给 `TabsItem`，如想自定义点击的样式时使用。接收点击后的样式的类名，之后你还需要写这个类 | String | - | 
 
 
 

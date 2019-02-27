@@ -32,6 +32,11 @@ import {Cascader} from 'wwz-ui'
 </z-cascader>
 ```
 
+:::tip
+由于该组件是自适应内部元素宽高的，所以建议给 `Cascader` 内部的内容固定高度，或者给一个如 `&nbsp` 的占位符来防止出现不必要的 Bug。
+::: 
+
+
 ## API
 
 | 参数 | 说明 | 类型 | 默认值 |
