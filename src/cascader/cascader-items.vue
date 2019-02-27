@@ -1,7 +1,7 @@
 <template>
-    <div class="cascader-wrapper">
-        <div class="cascader">
-            <div class="left">
+    <div class="z-cascader-wrapper">
+        <div class="z-cascader">
+            <div class="z-left">
                 <div v-for="item in sourceItem" @click="onClickLabel(item)" class="name">
                     <span class="detail">{{item.name}}</span>
                     <div class="icons">
@@ -14,7 +14,7 @@
                     </div>
                 </div>
             </div>
-            <div class="right-item" v-if="rightItems">
+            <div class="z-right-item" v-if="rightItems">
                 <z-cascader-items :sourceItem="rightItems"
                                   :level="level + 1" @update:selected="onUpdateSelected"
                                   :selected="selected"
@@ -93,7 +93,9 @@
 <style lang="scss" scoped>
     @import "var";
 
-    .cascader {
+    .z-cascader {
+        position: relative;
+        z-index: 1;
         display: flex;
         justify-content: flex-start;
         align-items: flex-start;
@@ -101,7 +103,7 @@
         background: white;
     }
 
-    .cascader-wrapper .left {
+    .z-cascader-wrapper .z-left {
         margin-left: -1px;
         height: 160px;
         overflow: auto;
@@ -134,7 +136,8 @@
 
     }
 
-    .right-item {
+    .z-right-item {
         border-left: 1px solid $border-color-light;
+
     }
 </style>

@@ -1,21 +1,27 @@
 <template>
     <div class="cascader-demo">
-        <h3>异步版本</h3>
-         <z-cascader :source.sync="artists" :selected.sync="selected" :loadData="loadData">
-            <z-button style="margin-bottom: 16px;">{{selectedString || '&nbsp;'}}</z-button>
+        <h3>同步版本</h3>
+        <z-cascader :source="source" :selected.sync="selected1">
+            <z-button>{{selectedString1 || '&nbsp;'}}</z-button>
         </z-cascader>
+        <h3>异步版本</h3>
+         <z-cascader :source.sync="artists" :selected.sync="selected2" :loadData="loadData">
+            <z-button>{{selectedString2 || '&nbsp;'}}</z-button>
+        </z-cascader>
+
     </div>
 </template>
 
 <script>
-    import ZCascader from './cascader/cascader'
-    import ZButton from './button/button'
+    import ZCascader from '../../../src/cascader/cascader'
+    import ZButton from '../../../src/button/button'
 
     export default {
         components: {ZCascader, ZButton},
         data() {
             return {
-                selected: [],
+                selected1: [],
+                selected2: [],
                 source: [
                     {
                         id: 1,
@@ -76,11 +82,18 @@
             }
         },
         computed: {
-            selectedString() {
-                if (this.selected.length === 0) {
-                    return 'Click Me '
+            selectedString1() {
+                if (this.selected1.length === 0) {
+                    return '选择省市区'
                 } else {
-                    return this.selected.map((item) => item.name).join('/')
+                    return this.selected1.map((item) => item.name).join('/')
+                }
+            },
+             selectedString2() {
+                if (this.selected2.length === 0) {
+                    return '选择作品'
+                } else {
+                    return this.selected2.map((item) => item.name).join('/')
                 }
             }
         },
@@ -120,5 +133,6 @@
 <style scoped lang="scss">
     .cascader-demo {
         margin-top: 32px;
+        margin-bottom: 32px;
     }
 </style>

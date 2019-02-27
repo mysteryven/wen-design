@@ -1,7 +1,7 @@
 {
   "name": "wwz-ui",
-  "version": "0.2.4",
-  "description": "this is a ui framework created by VUE  ",
+  "version": "0.2.62",
+  "description": "A UI framework based Vue ",
   "main": "dist/zui.umd.min.js",
   "scripts": {
     "serve": "vue-cli-service serve",

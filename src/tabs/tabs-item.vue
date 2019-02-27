@@ -45,7 +45,7 @@
 </script>
 
 <style scoped lang="scss">
-    $blue: blue;
+
     $disabled-text-color: grey;
     .tabs-item {
         flex-shrink: 0;
@@ -55,7 +55,7 @@
         display: flex;
         align-items: center;
         &.active {
-            color: $blue;
+            color: #5291d2;
             font-weight: bold;
         }
         &.disabled {

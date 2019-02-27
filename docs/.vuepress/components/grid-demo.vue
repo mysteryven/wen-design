@@ -101,6 +101,7 @@
     .z-content {
         height: 60px;
         display: flex;
+        color: white;
         justify-content: center;
         align-items: center;
     }

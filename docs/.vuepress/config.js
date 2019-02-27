@@ -49,7 +49,7 @@ module.exports = {
                 children: [
                     '/components/button/button-group.md',
                     '/components/menu/',
-                    '/components/nav/'
+                    '/components/tab/'
                 ]
             }, {
                 title: '数据录入',

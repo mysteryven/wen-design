@@ -26,6 +26,9 @@
             }
         },
         mounted() {
+            this.eventBus.$on('update:selected', (selected)=> {
+                this.$emit('update:selected', selected)
+            })
             this.$children.forEach(vm => {
                 if (vm.$options.name = 'z-tabs-head') {
                    vm.$children.forEach(childVm => {

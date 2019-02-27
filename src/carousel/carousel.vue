@@ -10,7 +10,7 @@
                 <slot></slot>
             </div>
         </div>
-        <div class="dots">
+        <div class="dots" v-if="dotsVisible">
             <span v-for="n in childrenLength" class="dot"
                   :class="selectedIndex+1 === n ? 'active': ''"
                   @click="skip(n-1)"
@@ -53,6 +53,10 @@
             arrowVisible: {
                 type: Boolean,
                 default: false
+            },
+            dotsVisible: {
+               type: Boolean,
+               default: true 
             }
 
         },

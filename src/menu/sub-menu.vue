@@ -46,6 +46,7 @@
         props: {
             name: {
                 type: String,
+                required: true
             }
         },
         mounted() {

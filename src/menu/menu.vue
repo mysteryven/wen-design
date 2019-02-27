@@ -1,7 +1,10 @@
 <template>
-    <div class="z-menu" :class="{'z-menu-vertical': vertical}">
-        <slot></slot>
+    <div class="z-menu-wrapper">
+        <div class="z-menu" :class="{'z-menu-vertical': vertical}">
+            <slot></slot>
+        </div>
     </div>
+
 </template>
 
 <script>
