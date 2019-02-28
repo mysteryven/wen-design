@@ -169,10 +169,13 @@
 
                 let reverse = false
 
-                if (lastIndex > newSelectedIndex && lastIndex !== maxLength) {
+                if (lastIndex > newSelectedIndex && lastIndex !== maxLength-1) {
                     reverse = true
                 }
 
+                if (lastIndex === maxLength -1 && newSelectedIndex === lastIndex -1) {
+                    reverse = true
+                }
 
                 if (forceReverse.open) {
                     reverse = forceReverse.value
