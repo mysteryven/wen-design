@@ -1,6 +1,6 @@
 {
   "name": "wwz-ui",
-  "version": "0.2.70",
+  "version": "0.2.71",
   "description": "A UI framework based Vue ",
   "main": "dist/zui.umd.min.js",
   "scripts": {

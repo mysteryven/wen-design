@@ -31,7 +31,6 @@
                 default: 'right',
                 type: String,
                 validator(newValue) {
-                    console.log(newValue)
                     return !(newValue !== 'bottom' && newValue !== 'right');
                 }
             },

@@ -131,7 +131,7 @@ import {Col, Row} from 'wwz-ui'
         <td>-</td>
       </tr>
       <tr>
-        <td>pc</td>
+        <td>ipad</td>
         <td>设置屏幕宽度大于 1024px 时的表现，如 {span: 1, offset: 1}</td>
         <td>对象</td>
         <td>-</td>
@@ -146,6 +146,6 @@ import {Col, Row} from 'wwz-ui'
     </table>
     
 :::tip
-由于默认是适配手机的，所以你想做适配，只需要给 ipad 和 pc 加就可以啦！另外，如果 默认值、ipad、pc 接收了 
+由于默认是适配手机的，所以你想做适配，只需要给 ipad 和 pc 加就可以啦！另外，如果默认值、ipad、pc 接收了 
 `offset`，那其他的也要给，以避免 「遗传」。如果没有的话请给 0。
 :::

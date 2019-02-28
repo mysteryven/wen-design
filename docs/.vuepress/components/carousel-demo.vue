@@ -1,6 +1,6 @@
 <template>
   <div>
-    <z-carousel class="z-slides" :selected.sync="selected" :auto-play="true" :interval="5000" arrowVisible>
+    <z-carousel class="z-slides" :selected.sync="selected" :auto-play="true" :interval="3000" arrowVisible>
       <z-carousel-item class="z-item" name="1">1</z-carousel-item>
       <z-carousel-item class="z-item" name="2">2</z-carousel-item>
       <z-carousel-item class="z-item" name="3">3</z-carousel-item>

@@ -4,9 +4,10 @@
             <slot></slot>
         </div>
         <cascader-items class="z-cascader-item" :sourceItem="source"
-                        v-show="cascaderVisible" @update:selected="onUpdateSelected"
+                        @update:selected="onUpdateSelected"
                         :selected="selected" :load-data="loadData"
                         :loading-item="loadingItem"
+                        @closecascader="close" v-show="cascaderVisible"
         ></cascader-items>
     </div>
 </template>
@@ -38,8 +39,6 @@
         },
         components: {
             'cascaderItems': CasCaderItems
-        },
-        mounted() {
         },
         methods: {
             close() {

@@ -14,9 +14,9 @@ import {Icon} from 'wwz-ui'
 <icon-demo/>
 </ClientOnly>
 
-## 在线示例
+## 代码
 
-[![Edit ZUI-Icon](https://codesandbox.io/static/img/play-codesandbox.svg)](https://codesandbox.io/s/yq7rn3pv71?fontsize=14)
+<iframe src="https://codesandbox.io/embed/yq7rn3pv71?fontsize=14&view=editor" style="width:100%; height:500px; border:0; border-radius: 4px; overflow:hidden;" sandbox="allow-modals allow-forms allow-popups allow-scripts allow-same-origin"></iframe>
 
 ## API 
 

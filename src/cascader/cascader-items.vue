@@ -20,6 +20,7 @@
                                   :selected="selected"
                                   :load-data="loadData"
                                   :loading-item="loadingItem"
+                                  @closecascader="closeCascader"
                 ></z-cascader-items>
             </div>
         </div>
@@ -73,11 +74,18 @@
             }
         },
         methods: {
+            closeCascader() {
+                this.$emit('closecascader', true)
+            },
             onClickLabel(item) {
+                if (!this.rightArrowVisible(item)) {
+                   this.closeCascader()
+                }
                 let copySelected = JSON.parse(JSON.stringify(this.selected))
                 copySelected[this.level] = item
                 copySelected.splice(this.level + 1)
                 this.$emit('update:selected', copySelected)
+
             },
             onUpdateSelected(e) {
                 this.$emit('update:selected', e)

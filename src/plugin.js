@@ -18,7 +18,6 @@ export default {
 
 function createToast(Vue, message, options={}) {
     const Constructor = Vue.extend(Toast)
-    console.log(options)
     const toast = new Constructor({
         propsData: options
     })

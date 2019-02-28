@@ -55,6 +55,7 @@ module.exports = {
                 title: '数据录入',
                 collapsable: false,
                 children: [
+                    '/components/input/',
                     '/components/button/button-select.md',
                     '/components/cascader/'
                 ]
@@ -73,7 +74,15 @@ module.exports = {
                 title: '反馈',
                 collapsable: false,
                 children: [
-                    '/components/message/'
+                    '/components/toast/'
+                ]
+            },
+            {
+                title: '其他',
+                collapsable: false,
+                children: [
+                    '/components/sticky/',
+                    '/components/click-outside/'
                 ]
             }
 
