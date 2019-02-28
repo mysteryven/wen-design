@@ -15,7 +15,6 @@
                 type: String,
                 required: true
             },
-
         },
         data() {
             return {
@@ -40,38 +39,41 @@
         height: 100%;
     }
 
-    .z-slide-leave-active {
-        transition: all 2s;
-        position: absolute;
-        top: 0;
+    .z-item-not-first-in {
+        .z-slide-leave-active {
+            transition: all 2s;
+            position: absolute;
+            top: 0;
+        }
+
+        .z-slide-enter-active {
+            transition: all 2s;
+        }
+
+        .z-slide-enter {
+            transform: translateX(100%);
+        }
+
+        .z-slide-leave-to {
+            transform: translateX(-100%);
+        }
+
+        .z-slide-leave-active.reverse {
+            right: 0;
+        }
+        .z-slide-leave-active.no-reverse {
+            left: 0;
+        }
+
+        .z-slide-enter.reverse {
+            transform: translateX(-100%);
+        }
+
+        .z-slide-leave-to.reverse {
+            transform: translateX(100%);
+        }
     }
 
-    .z-slide-enter-active {
-        transition: all 2s;
-    }
-
-    .z-slide-enter {
-        transform: translateX(100%);
-    }
-
-    .z-slide-leave-to {
-        transform: translateX(-100%);
-    }
-
-    .z-slide-leave-active.reverse {
-        right: 0;
-    }
-    .z-slide-leave-active.no-reverse {
-        left: 0;
-    }
-
-    .z-slide-enter.reverse {
-        transform: translateX(-100%);
-    }
-
-    .z-slide-leave-to.reverse {
-        transform: translateX(100%);
-    }
 
 
 </style>

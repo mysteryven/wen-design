@@ -6,7 +6,7 @@
          @touchend="onTouchEnd"
         >
         <div class="z-carousel-window">
-            <div class="z-carousel-wrapper">
+            <div class="z-carousel-wrapper" ref="carouselItemWrapper">
                 <slot></slot>
             </div>
         </div>
@@ -20,7 +20,6 @@
             <z-icon name="left" class="right-arrow icon" @click="prev"></z-icon>
             <z-icon name="right" class="left-arrow icon" @click="next"></z-icon>
         </template>
-
     </div>
 </template>
 
@@ -61,6 +60,10 @@
 
         },
         mounted() {
+            setTimeout(()=>{
+                this.$refs.carouselItemWrapper.classList.add('z-item-not-first-in')
+            }, 0)
+
             this.updateChildren()
             this.playAutomatic()
             this.childrenLength = this.names.length
