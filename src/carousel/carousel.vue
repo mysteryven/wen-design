@@ -4,7 +4,7 @@
          @mouseleave="onMouseLeave"
          @touchstart="onTouchStart"
          @touchend="onTouchEnd"
-        >
+    >
         <div class="z-carousel-window">
             <div class="z-carousel-wrapper" ref="carouselItemWrapper">
                 <slot></slot>
@@ -32,6 +32,7 @@
         data() {
             return {
                 childrenLength: 0,
+                transitionEnd: true,
                 timerId: undefined,
                 startX: undefined,
                 startY: undefined
@@ -54,13 +55,13 @@
                 default: false
             },
             dotsVisible: {
-               type: Boolean,
-               default: true 
+                type: Boolean,
+                default: true
             }
 
         },
         mounted() {
-            setTimeout(()=>{
+            setTimeout(() => {
                 this.$refs.carouselItemWrapper.classList.add('z-item-not-first-in')
             }, 0)
 
@@ -81,22 +82,37 @@
             this.updateChildren()
         },
         methods: {
+            limitClick() {
+                if (!this.transitionEnd) {
+                    return false
+                }
+                this.transitionEnd = false
+                setTimeout(()=>{
+                    this.transitionEnd = true
+                }, 1000)
+                return true
+            },
             next() {
+                if (!this.limitClick()) {
+                    return
+                }
                 this.updateSelected(this.selectedIndex + 1, {open: true, value: false})
             },
             prev() {
+                if (!this.limitClick()) {
+                    return
+                }
                 this.updateSelected(this.selectedIndex - 1, {open: true, value: true})
             },
             onTouchStart(e) {
                 this.startX = e.touches[0].clientX
                 this.startY = e.touches[0].clientY
-                console.log('fresh')
                 this.pause()
             },
             onTouchEnd(e) {
                 let endX = e.changedTouches[0].clientX
                 let endY = e.changedTouches[0].clientY
-                if (Math.abs(endY-this.startY) / Math.abs(endX - this.startX) > 1 / 2) {
+                if (Math.abs(endY - this.startY) / Math.abs(endX - this.startX) > 1 / 2) {
                     return
                 }
                 if (this.startX > endX) {
@@ -112,8 +128,10 @@
                 this.playAutomatic()
             },
             skip(n) {
+                if (!this.limitClick()) {
+                    return
+                }
                 if (n === 0 && this.selectedIndex === this.childrenLength - 1) {
-                    console.log('hi')
                     this.updateSelected(n, {open: true, value: true})
                 } else {
                     this.updateSelected(n)
@@ -151,9 +169,10 @@
 
                 let reverse = false
 
-                if (lastIndex > newSelectedIndex && lastIndex !== maxLength - 1) {
+                if (lastIndex > newSelectedIndex && lastIndex !== maxLength) {
                     reverse = true
                 }
+
 
                 if (forceReverse.open) {
                     reverse = forceReverse.value
@@ -190,11 +209,13 @@
         position: relative;
         width: 100%;
         height: 100%;
+
         &-window {
             width: 100%;
             height: 100%;
             overflow: hidden;
             border: 1px solid black;
+
             .z-carousel-wrapper {
                 width: 100%;
                 height: 100%;
@@ -202,6 +223,7 @@
                 position: relative;
             }
         }
+
         .dots {
             display: flex;
             position: relative;
@@ -220,14 +242,17 @@
                 box-sizing: border-box;
                 border-radius: 4px;
                 cursor: pointer;
+
                 &.active {
                     background-color: $button-active-bg;
                 }
+
                 &:hover {
                     background-color: $button-bg-hover;
                 }
             }
         }
+
         .icon {
             fill: $button-bg-hover;
             width: 16px;
@@ -236,10 +261,12 @@
             align-self: center;
             position: absolute;
             transform: translateY(25%);
+
             &.left-arrow {
                 top: 50%;
                 right: 1em;
             }
+
             &.right-arrow {
                 top: 50%;
                 left: 1em;
