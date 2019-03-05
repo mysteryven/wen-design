@@ -14,7 +14,7 @@
         </template>
         <span class="z-icon-wrapper" :class="{disabled: nextDisabled}" @click="nextClick">
                 <z-icon class="z-icon" name="right"></z-icon>
-            </span>
+        </span>
 
     </div>
 </template>
@@ -44,9 +44,6 @@
                     tempPages = [1, 2, 3, 4, this.total]
 
                 let pages = tempPages.sort((a, b) => a - b).filter(item => item > 0 && item <= this.total)
-
-
-
 
                 return pages.reduce((prev, current, index, array) => {
                     if (index > 0 && current === array[index - 1]) {
@@ -78,6 +75,9 @@
                 this.changeCurrent(this.current - 1)
             },
             nextClick() {
+                console.log(1)
+                console.log(this.current)
+                console.log(this.total)
                 if (this.current === this.total) {
                     return
                 }
@@ -95,6 +95,7 @@
         display: flex;
         justify-content: flex-start;
         align-items: center;
+
         &-number {
             border: 1px solid lighten($border-color, 20%);
             margin: 4px;
@@ -105,6 +106,7 @@
             align-items: center;
             justify-content: center;
             border-radius: $border-radius;
+
             &:hover, &.active {
                 border-color: $blue;
             }
@@ -117,11 +119,13 @@
             align-items: center;
             justify-content: center;
         }
+
         .z-item-ellipsis .z-icon, .z-icon-wrapper .z-icon {
             width: 16px;
             height: 16px;
             fill: $grey;
         }
+
         .z-icon-wrapper {
             border: 1px solid lighten($border-color, 20%);
             margin: 4px;
@@ -132,9 +136,11 @@
             align-items: center;
             justify-content: center;
             border-radius: $border-radius;
+
             &:hover, &.active {
                 border-color: $blue;
             }
+
             &.disabled {
                 border-color: lighten($border-color, 20%);
                 cursor: not-allowed;

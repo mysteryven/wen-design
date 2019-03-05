@@ -49,7 +49,8 @@ module.exports = {
                 children: [
                     '/components/button/button-group.md',
                     '/components/menu/',
-                    '/components/tab/'
+                    '/components/tab/',
+                    '/components/pager/'
                 ]
             }, {
                 title: '数据录入',
