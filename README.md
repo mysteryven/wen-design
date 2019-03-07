@@ -1,19 +1,10 @@
 # ui-wheels
 
-[![Build Status](https://travis-ci.org/mysteryven/ui-wheels.svg?branch=master)](https://travis-ci.org/mysteryven/ui-wheels)
+<!-- [![Build Status](https://travis-ci.org/mysteryven/ui-wheels.svg?branch=master)](https://travis-ci.org/mysteryven/ui-wheels) -->
 [![npm](https://img.shields.io/badge/license-MIT-green.svg)](https://www.npmjs.com/package/wwz-ui)
 
 [官方文档](https://mysterywz.xyz/wen-design/)
 
-## 介绍
-
-推荐使用以下盒模型
-
-```css
- * {
-    box-sizing: border-box；
- }
-```
 ## 安装
 
 
