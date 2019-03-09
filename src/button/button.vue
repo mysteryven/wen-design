@@ -42,6 +42,7 @@
                 type: Boolean,
                 default: false
             }
+
         },
         mounted() {
             this.$el.addEventListener('animationend', this.listenAnimation)
